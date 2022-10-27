@@ -1,12 +1,12 @@
 <?php
     require_once  'model_conexion.php';
 
-    class Modelo_EstadoCivil extends conexionBD{
+    class Modelo_Depto extends conexionBD{
     
 
-        public function Listar_EstadoCivil(){
+        public function Listar_Depto(){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_LISTAR_ESTADOCIVIL()";
+            $sql = "CALL SP_LISTAR_DEPARTAMENTO()";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query->execute();
@@ -18,12 +18,13 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Registrar_EstadoCivil($estadocivil){
+        public function Registrar_Depto($area,$des,$dep){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_REGISTRAR_ESTADOCIVIL(?)";
+            $sql = "CALL SP_REGISTRAR_DEPARTAMENTO(?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$estadocivil);
+            $query -> bindParam(1,$depto);
+            $query -> bindParam(2,$des);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
@@ -31,21 +32,24 @@
             conexionBD::cerrar_conexion();
         }
 
-        
-        public function Modificar_EstadoCivil($id,$estadocivil){
+        public function Modificar_Depto($depto,$des){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_MODIFICAR_ESTADOCIVIL(?,?)";
+            $sql = "CALL SP_MODIFICAR_DEPARTAMENTO(?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$id);
-            $query -> bindParam(2,$estadocivil);
-            
+            $query -> bindParam(1,$depto);
+            $query -> bindParam(2,$des);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
             }
             conexionBD::cerrar_conexion();
         }
+
+       
+
+
+        
 
 
 

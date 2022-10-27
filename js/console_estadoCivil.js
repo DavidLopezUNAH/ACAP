@@ -15,8 +15,8 @@ function Listar_estadoCivil(){
         },
         "columns":[
             {"defaultContent":""},
-            {"data":"cod_estadoCivil"},
-            {"data":"nombre_estadoCivil"},
+            {"data":"cod_estado_civil"},
+            {"data":"nombre_estado_civil"},
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
             
         ],
@@ -38,8 +38,8 @@ $('#tabla_estadocivil').on('click','.editar',function(){
 		var data = tbl_estadoC.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
-    document.getElementById('txt_estadocivil_editar').value=data.nombre_estadoCivil;
-    document.getElementById('txt_cod_estadoCivil').value=data.cod_estadoCivil;
+    document.getElementById('txt_estadocivil_editar').value=data.nombre_estado_civil;
+    document.getElementById('txt_idestadocivil').value=data.cod_estado_civil;
     
 })
 
@@ -56,7 +56,7 @@ function Registrar_EstadoCivil(){
     }
 
     $.ajax({
-        "url":"../controller/Estado_civil/controlador_registro_estadoCivil.php",
+        "url":"../controller/Estado_civil/controlador_registrar_estadoCivil.php",
         type:'POST',
         data:{
             a:tbl_estadocivil
@@ -64,13 +64,13 @@ function Registrar_EstadoCivil(){
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
-                Swal.fire("Mensaje de Confirmacion","Nuevo Universidad Registrada","success").then((value)=>{
+                Swal.fire("Mensaje de Confirmacion","Nuevo estado civil registrad","success").then((value)=>{
                     document.getElementById('txt_estadocivil').value="";
                     tbl_estadocivil.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
             }else{
-                Swal.fire("Mensaje de Advertencia","La universidad ingresada ya se encuentra en la base de datos","warning");
+                Swal.fire("Mensaje de Advertencia","El estado civil ingresado ya se encuentra en la base de datos","warning");
             }
         }else{
             return Swal.fire("Mensaje de Error","No se completo el registro","error");            
@@ -79,19 +79,19 @@ function Registrar_EstadoCivil(){
 }
 
 function Modificar_EstadoCivil(){
-    let id   = document.getElementById('txt_cod').value;
-    let est = document.getElementById('txt_estadoCivil_editar').value;
+    let id   = document.getElementById('txt_idestadocivil').value;
+    let estadocivil = document.getElementById('txt_estadocivil_editar').value;
     
-    if(est.length==0 || id.length==0){
+    if(estadocivil.length==0 || id.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
     $.ajax({
-        "url":"../controller/area/controlador_modificar_estadoCivil.php",
+        "url":"../controller/Estado_civil/controlador_modificar_estadoCivil.php",
         type:'POST',
         data:{
             id:id,
-            est:est,
+            estadocivil:estadocivil,
             
         }
     }).done(function(resp){
