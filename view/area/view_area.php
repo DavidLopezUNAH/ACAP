@@ -33,10 +33,10 @@
                   <thead>
                       <tr>
                           <th>#</th>
-                          <th>Area</th>
-                          <th>Fecha Registro</th>
-                          <th>Estatus</th>
-                          <th>Acción</th>
+                          <th>Nombre de Area</th>
+                          <th>Descripcion</th>
+                          <th>Departamento</th>
+                          <th>Accion</th>
                       </tr>
                   </thead>
               </table>
@@ -49,9 +49,9 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content -->
-<!-- Modal -->
-<div class="modal fade" id="modal_registro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- /.content --> 
+<!-- Modal de registro -->
+<div class="modal fade" id="modal_registro"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -66,6 +66,15 @@
                 <label for="">AREA</label>
                 <input type="text" class="form-control" id="txt_area">
             </div>
+            <div class="col-12">
+                <label for="">Descripcion</label>
+                <input type="text" class="form-control" id="txt_des">
+            </div>
+            <div class="col-6">
+              <label for="">Departamento</label>
+              <select class="js-example-basic-single" id="select_dep" style="width:100%">
+              </select>
+            </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -74,8 +83,8 @@
       </div>
     </div>
   </div>
-</div>    
-<!-- Modal -->
+</div>
+<!-- Modal de editar -->
 <div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -90,14 +99,17 @@
             <div class="col-12">
                 <label for="">AREA</label>
                 <input type="text" class="form-control" id="txt_area_editar">
-                <input type="text" id="txt_idarea" hidden>
+                <input type="text" id="txt_area" hidden>
             </div>
             <div class="col-12">
-                <label for="">Estatus</label>
-                  <select name="" id="select_estatus" class="form-control">
-                      <option value="ACTIVO">ACTIVO</option>
-                      <option value="INACTIVO">INACTIVO</option>
-                  </select>
+                <label for="">DESCRIPCION</label>
+                <input type="text" class="form-control" id="txt_des_editar">
+                <input type="text" id="txt_des" hidden>
+            </div>
+            <div class="col-12">
+                <label for="">DEPARTAMENTO</label>
+                <select class="js-example-basic-single" id="select_dep_editar" style="width:100%">
+              </select>
             </div>
         </div>
       </div>
@@ -107,12 +119,13 @@
       </div>
     </div>
   </div>
-</div>   
+</div>    
+    <!-- Modal -->
+    <!-- /.content -->
     <script>
       $(document).ready(function() {
         listar_area();
+        $('.js-example-basic-single').select2();
+        Cargar_Select_dep();
       } );
-      $('#modal_registro').on('shown.bs.modal', function () {
-        $('#txt_area').trigger('focus')
-       })
     </script>

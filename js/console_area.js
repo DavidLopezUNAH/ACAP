@@ -15,16 +15,10 @@ function listar_area(){
         },
         "columns":[
             {"defaultContent":""},
-            {"data":"area_nombre"},
-            {"data":"area_fecha_registro"},
-            {"data":"area_estado",
-                render: function(data,type,row){
-                        if(data=='ACTIVO'){
-                        return '<span class="badge bg-success">ACTIVO</span>';
-                        }else{
-                        return '<span class="badge bg-danger">INACTIVO</span>';
-                        }
-                }   
+            {"data":"nombre_area"},
+            {"data":"descripcion"},
+            {"data":"cod_departamento",
+           
             },
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
             
@@ -47,9 +41,9 @@ $('#tabla_area').on('click','.editar',function(){
 		var data = tbl_area.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
-    document.getElementById('txt_area_editar').value=data.area_nombre;
-    document.getElementById('txt_idarea').value=data.area_cod;
-    document.getElementById('select_estatus').value=data.area_estado;
+    document.getElementById('txt_area_editar').value=data.nombre_area;
+    document.getElementById('txt_des_editar').value=data.descripcion;
+    document.getElementById('select_dep_editar').value=data.cod_departamento;
 })
 
 
@@ -60,7 +54,9 @@ function AbrirRegistro(){
 
 function Registrar_Area(){
     let area = document.getElementById('txt_area').value;
-    if(area.length==0){
+    let des = document.getElementById('txt_des').value;
+    let dep = document.getElementById('select_dep').value;
+    if(area.length==0 || des.length==0 || dep.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -68,18 +64,22 @@ function Registrar_Area(){
         "url":"../controller/area/controlador_registro_area.php",
         type:'POST',
         data:{
-            a:area
+            area:area,
+            des:des,
+            dep:dep
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Nuevo Area Registrado","success").then((value)=>{
                     document.getElementById('txt_area').value="";
+                    document.getElementById('txt_des').value="";
+                    document.getElementById('select_dep').value=""
                     tbl_area.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
             }else{
-                Swal.fire("Mensaje de Advertencia","El area ingresada ya se encuentra en la base de datos","warning");
+                Swal.fire("Mensaje de Advertencia","El area ingresada ya se encuentra registrada","warning");
             }
         }else{
             return Swal.fire("Mensaje de Error","No se completo el registro","error");            
@@ -88,10 +88,10 @@ function Registrar_Area(){
 }
 
 function Modificar_Area(){
-    let id   = document.getElementById('txt_idarea').value;
-    let area = document.getElementById('txt_area_editar').value;
-    let esta = document.getElementById('select_estatus').value;
-    if(area.length==0 || id.length==0){
+    let area   = document.getElementById('txt_area_editar').value;
+    let des = document.getElementById('txt_des_editar').value;
+    let dep = document.getElementById('select_dep_editar').value;
+    if(area.length==0 || des.length==0 || dep.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -99,9 +99,9 @@ function Modificar_Area(){
         "url":"../controller/area/controlador_modificar_area.php",
         type:'POST',
         data:{
-            id:id,
-            are:area,
-            esta:esta
+            area:area,
+            des:des,
+            dep:dep
         }
     }).done(function(resp){
         if(resp>0){
@@ -118,3 +118,27 @@ function Modificar_Area(){
         }
     })
 }
+
+function Cargar_Select_dep(){
+    $.ajax({
+        "url":"../controller/area/controlador_cargar_select_departamento.php",
+        type:'POST'
+    }).done(function(resp){
+        let data = JSON.parse(resp);
+        if(data.length>0){
+            let cadena = "";
+            for (let i = 0; i < data.length; i++) {
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            document.getElementById('select_dep').innerHTML=cadena;
+            document.getElementById('select_dep_editar').innerHTML=cadena;
+
+        }else{
+            cadena+="<option value=''>No hay departamento disponible</option>";
+            document.getElementById('select_dep').innerHTML=cadena;
+            document.getElementById('select_dep_editar').innerHTML=cadena;
+
+        }
+    })
+}
+
