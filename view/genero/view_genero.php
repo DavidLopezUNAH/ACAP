@@ -1,10 +1,9 @@
-<script src="../js/console_genero.js?rev=<?php echo time();?>"></script>
+<script src="../js/console.genero.js?rev=<?php echo time();?>"></script>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">MANTENIMIENTO TABLA GENERO</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -25,7 +24,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"><b>Listado de Genero</b></h3>
+              <h1 class="m-0">MANTENIMIENTO TABLA GENERO</h1>
                 <button class="btn btn-danger btn-sm float-right" onclick="AbrirRegistro()"> <i class="fas fa-plus"> </i> Agregar un Nuevo Genero</button>
               </div>
               <div class="card-body">
