@@ -22,6 +22,6 @@
         function cerrar_conexion(){
             $this->$pdo=null;
         }
-    }
+    } 
 
 ?>
