@@ -1,6 +1,6 @@
-var  tbl_departamentos;
+var  tbl_departamento;
 function Listar_depto(){
-    tbl_departamentos = $("#tabla_depto").DataTable({
+    tbl_departamento = $("#tabla_depto").DataTable({
         "ordering":false,   
         "bLengthChange":true,
         "searching": { "regex": false },
@@ -25,23 +25,22 @@ function Listar_depto(){
         "language":idioma_espanol,
         select: true
     });
-    tbl_departamentos.on('draw.td',function(){
+    tbl_departamento.on('draw.td',function(){
       var PageInfo = $("#tabla_depto").DataTable().page.info();
-      tbl_departamentos.column(0, {page: 'current'}).nodes().each(function(cell, i){
+      tbl_departamento.column(0, {page: 'current'}).nodes().each(function(cell, i){
         cell.innerHTML = i + 1 + PageInfo.start;
       });
     });
 }
 
 $('#tabla_depto').on('click','.editar',function(){
-	var data = tbl_departamentos.row($(this).parents('tr')).data();//En tamaño escritorio
-	if(tbl_departamentos.row(this).child.isShown()){
-		var data = tbl_departamentos.row(this).data();
+	var data = tbl_departamento.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_departamento.row(this).child.isShown()){
+		var data = tbl_departamento.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
     document.getElementById('txt_depto_editar').value=data.nombre_depto;
-    document.getElementById('txt_id_depto').value=data.cod_departamento;
-    document.getElementById('txt_des').value=data.descripcion;
+    document.getElementById('txt_des_editar').value=data.descripcion;
     
 })
 
@@ -71,7 +70,7 @@ function Registrar_Depto(){
                 Swal.fire("Mensaje de Confirmacion","Nuevo Departamentop registrado","success").then((value)=>{
                     document.getElementById('txt_depto').value="";
                     document.getElementById('txt_des').value="";
-                    tbl_departamentos.ajax.reload();
+                    tbl_departamento.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
             }else{
@@ -83,34 +82,34 @@ function Registrar_Depto(){
     })
 }
 
-/*function Modificar_EstadoCivil(){
-    let id   = document.getElementById('txt_idestadocivil').value;
-    let estadocivil = document.getElementById('txt_estadocivil_editar').value;
+function Modificar_Depto(){
+    let depto  = document.getElementById('txt_depto_editar').value;
+    let des= document.getElementById('txt_des_editar').value;
     
-    if(estadocivil.length==0 || id.length==0){
+    if(depto.length==0 || des.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
     $.ajax({
-        "url":"../controller/Estado_civil/controlador_modificar_estadoCivil.php",
+        "url":"../controller/Departamento/controlador_modificar_depto.php",
         type:'POST',
         data:{
-            id:id,
-            estadocivil:estadocivil,
+            depto:depto,
+            des:des
             
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Datos Actualizados","success").then((value)=>{
-                    tbl_departamentosivil.ajax.reload();
+                    tbl_departamento.ajax.reload();
                     $("#modal_editar").modal('hide');
                 });
             }else{
-                Swal.fire("Mensaje de Advertencia","El area ingresada ya se encuentra en la base de datos","warning");
+                Swal.fire("Mensaje de Advertencia","El departamento ingresado ya se encuentra en la base de datos","warning");
             }
         }else{
             return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
         }
     })
-}*/
+}

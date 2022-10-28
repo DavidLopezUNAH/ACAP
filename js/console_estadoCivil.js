@@ -98,11 +98,11 @@ function Modificar_EstadoCivil(){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Datos Actualizados","success").then((value)=>{
-                    tbl_estadocivil.ajax.reload();
+                    tbl_estadoC.ajax.reload();
                     $("#modal_editar").modal('hide');
                 });
             }else{
-                Swal.fire("Mensaje de Advertencia","El area ingresada ya se encuentra en la base de datos","warning");
+                Swal.fire("Mensaje de Advertencia","El estado civil ingresado ya se encuentra en la base de datos","warning");
             }
         }else{
             return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
