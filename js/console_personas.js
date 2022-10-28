@@ -26,7 +26,6 @@ function listar_personas(){
             {"data":"nombre_pais"},
             {"data":"nombre_genero"},
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
-            {"defaultContent":"<button class='eliminar btn btn-primary'><i class='fa fa-trash'></i></button>"},
         ],
   
         "language":idioma_espanol,
@@ -102,9 +101,19 @@ function Registrar_Persona(){
   })
 }
 
-function Cargar_Select_ECivil(){
+$('#tabla_personas').on('click','.editar',function(){
+	var data = tbl_persona.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_persona.row(this).child.isShown()){
+		var data = tbl_persona.row(this).data();
+	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
+    $("#modal_editar").modal('show');
+    document.getElementById('txt_tiposolicitud_editar').value=data.nombre_tipo_soliciud;
+    document.getElementById('txt_idtiposolicitud').value=data.cod_tipo_solicitud;
+})
+
+function Cargar_Select_ecivil(){
     $.ajax({
-        "url":"../controller/usuario/controlador_cargar_estadocivil.php",
+        "url":"../controller/personas/controlador_cargar_estadocivil.php",
         type:'POST'
     }).done(function(resp){
         let data = JSON.parse(resp);
@@ -114,12 +123,78 @@ function Cargar_Select_ECivil(){
                 cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
             }
             document.getElementById('select_ecivil').innerHTML=cadena;
-            document.getElementById('select_area_editar').innerHTML=cadena;
+            document.getElementById('select_persona_editar').innerHTML=cadena;
 
         }else{
-            cadena+="<option value=''>No hay empleados disponibles</option>";
-            document.getElementById('select_area').innerHTML=cadena;
-            document.getElementById('select_area_editar').innerHTML=cadena;
+            cadena+="<option value=''>No hay Estados Civiles disponibles</option>";
+            document.getElementById('select_ecivil').innerHTML=cadena;            
+            document.getElementById('select_persona_editar').innerHTML=cadena;
+        }
+    })
+}
+
+function Cargar_Select_tipopersona(){
+    $.ajax({
+        "url":"../controller/personas/controlador_cargar_tipopersona.php",
+        type:'POST'
+    }).done(function(resp){
+        let data = JSON.parse(resp);
+        if(data.length>0){
+            let cadena = "";
+            for (let i = 0; i < data.length; i++) {
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            document.getElementById('select_tpersona').innerHTML=cadena;
+            document.getElementById('select_persona_editar').innerHTML=cadena;
+
+        }else{
+            cadena+="<option value=''>No hay Estados Civiles disponibles</option>";
+            document.getElementById('select_tpersona').innerHTML=cadena;
+            document.getElementById('select_persona_editar').innerHTML=cadena;
+        }
+    })
+}
+
+function Cargar_Select_pais(){
+    $.ajax({
+        "url":"../controller/personas/controlador_cargar_pais.php",
+        type:'POST'
+    }).done(function(resp){
+        let data = JSON.parse(resp);
+        if(data.length>0){
+            let cadena = "";
+            for (let i = 0; i < data.length; i++) {
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            document.getElementById('select_pais').innerHTML=cadena;
+            document.getElementById('select_persona_editar').innerHTML=cadena;
+
+        }else{
+            cadena+="<option value=''>No hay Estados Civiles disponibles</option>";
+            document.getElementById('select_pais').innerHTML=cadena;
+            document.getElementById('select_persona_editar').innerHTML=cadena;
+        }
+    })
+}
+
+function Cargar_Select_genero(){
+    $.ajax({
+        "url":"../controller/personas/controlador_cargar_genero.php",
+        type:'POST'
+    }).done(function(resp){
+        let data = JSON.parse(resp);
+        if(data.length>0){
+            let cadena = "";
+            for (let i = 0; i < data.length; i++) {
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            document.getElementById('select_genero').innerHTML=cadena;
+            document.getElementById('select_persona_editar').innerHTML=cadena;
+
+        }else{
+            cadena+="<option value=''>No hay Estados Civiles disponibles</option>";
+            document.getElementById('select_genero').innerHTML=cadena;
+            document.getElementById('select_persona_editar').innerHTML=cadena;
         }
     })
 }

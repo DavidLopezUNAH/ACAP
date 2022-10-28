@@ -43,8 +43,7 @@
                           <th>Tipo de Persona</th>
                           <th>Pais</th>
                           <th>Genero</th>
-                          <th>Acción para Editar</th>
-                          <th>Acción para Eliminar</th>
+                          <th>Acción</th>
                       </tr>
                   </thead>
               </table>
@@ -59,7 +58,7 @@
     </div>
     <!-- /.content -->
 <!-- Modal -->
-<div class="modal fade" id="modal_registro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -70,40 +69,51 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <div class="col-12">
-                <label for="">Ingrese el Primer Nombre:</label>
-                <input type="text" class="form-control" id="txt_pnombre">
-                <label for="">Ingrese el Segundo Nombre:</label>
-                <input type="text" class="form-control" id="txt_snombre">
-                <label for="">Ingrese el Primer Apellido:</label>
-                <input type="text" class="form-control" id="txt_papellido">
-                <label for="">Ingrese el Segundo Apellido:</label>
-                <input type="text" class="form-control" id="txt_sapellido">
-                <label for="">Ingrese la Fecha de Nacimiento:</label>
-                <input type="date" class="form-control" id="txt_fechnac">
-                <label for="">Ingrese el Grado que posee esta persona:</label>
-                <input type="text" class="form-control" id="txt_grado">
-                <div class="col-6">
-              <label for="">AREA</label>
+          <div class="col-6">
+            <label for="">Primer Nombre:</label>
+            <input type="text" class="form-control" id="txt_pnombre">
+          </div>
+          <div class="col-6">
+            <label for="">Segundo Nombre:</label>
+            <input type="text" class="form-control" id="txt_snombre">
+          </div>
+          <div class="col-6">
+            <label for="">Primer Apellido:</label>
+            <input type="text" class="form-control" id="txt_papellido">
+          </div>
+          <div class="col-6">
+            <label for="">Segundo Apellido:</label>
+            <input type="text" class="form-control" id="txt_sapellido">
+          </div>
+          <div class="col-6">
+            <label for="">Fecha de Nacimiento:</label>
+            <input type="date" class="form-control" id="txt_fechnac">
+          </div>
+          <div class="col-6">
+            <label for="">Grado Academico:</label>
+            <input type="text" class="form-control" id="txt_grado">
+          </div>
+          <div class="col-6">
+              <label for="">Estado Civil:</label>
               <select class="js-example-basic-single" id="select_ecivil" style="width:100%">
               </select>
             </div>
-                  <label for="">Ingrese el Tipo de Persona:</label>
-                <select name="" id="select_tpersona" class="form-control">
-                      <option value=1>PAR EVALUADOR</option>
-                      <option value=2>PAR</option>
-                  </select>
-                <label for="">Ingrese el Pais:</label>
-                <select name="" id="select_pais" class="form-control">
-                      <option value=1>GUATEMALA</option>
-                      <option value=2>BRASIL</option>
-                  </select>
-                <label for="">Ingrese el Genero:</label>
-                <select name="" id="select_genero" class="form-control">
-                      <option value=1>MASCULINO</option>
-                      <option value=2>FEMENINO</option>
-                  </select>             
+            <div class="col-6">
+              <label for="">Tipo de Persona:</label>
+              <select class="js-example-basic-single" id="select_tpersona" style="width:100%">
+              </select>
             </div>
+            <div class="col-6">
+              <label for="">Pais:</label>
+              <select class="js-example-basic-single" id="select_pais" style="width:100%">
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="">Genero:</label>
+              <select class="js-example-basic-single" id="select_genero" style="width:100%">
+              </select>
+            </div>
+                
         </div>
       </div>
       <div class="modal-footer">
@@ -113,8 +123,78 @@
     </div>
   </div>
 </div>  
+<div class="modal fade" id="modal_registro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">EDITAR DATOS DE PERSONAS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <label for="">Primer Nombre:</label>
+            <input type="text" class="form-control" id="txt_pnombre">
+          </div>
+          <div class="col-6">
+            <label for="">Segundo Nombre:</label>
+            <input type="text" class="form-control" id="txt_snombre">
+          </div>
+          <div class="col-6">
+            <label for="">Primer Apellido:</label>
+            <input type="text" class="form-control" id="txt_papellido">
+          </div>
+          <div class="col-6">
+            <label for="">Segundo Apellido:</label>
+            <input type="text" class="form-control" id="txt_sapellido">
+          </div>
+          <div class="col-6">
+            <label for="">Fecha de Nacimiento:</label>
+            <input type="date" class="form-control" id="txt_fechnac">
+          </div>
+          <div class="col-6">
+            <label for="">Grado Academico:</label>
+            <input type="text" class="form-control" id="txt_grado">
+          </div>
+          <div class="col-6">
+              <label for="">Estado Civil:</label>
+              <select class="js-example-basic-single" id="select_ecivil" style="width:100%">
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="">Tipo de Persona:</label>
+              <select class="js-example-basic-single" id="select_tpersona" style="width:100%">
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="">Pais:</label>
+              <select class="js-example-basic-single" id="select_pais" style="width:100%">
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="">Genero:</label>
+              <select class="js-example-basic-single" id="select_genero" style="width:100%">
+              </select>
+            </div>
+                
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" onclick="Registrar_Persona()">Ingresar</button>
+      </div>
+    </div>
+  </div>
+</div> 
    <script>
       $(document).ready(function() {
         listar_personas();
+        $('.js-example-basic-single').select2();
+        Cargar_Select_ecivil();
+        Cargar_Select_tipopersona();
+        Cargar_Select_pais();
+        Cargar_Select_genero();
       } );
     </script>

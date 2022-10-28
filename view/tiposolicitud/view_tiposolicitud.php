@@ -34,8 +34,7 @@
                       <tr>
                           <th>Codigo</th>
                           <th>Nombre Tipo de Solicitud</th>
-                          <th>Acción para editar</th>
-                          <th>Acción para eliminar</th>
+                          <th>Acción </th>
                       </tr>
                   </thead>
               </table>

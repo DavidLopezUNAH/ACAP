@@ -1,5 +1,5 @@
 <?php
-    require '../../model/model_persona.php';
+    require '../../model/model_personas.php';
     $MU = new Modelo_Personas();//Instaciamos
     $p_nombre = strtoupper(htmlspecialchars($_POST['p_nombre'],ENT_QUOTES,'UTF-8'));   
     $s_nombre = strtoupper(htmlspecialchars($_POST['s_nombre'],ENT_QUOTES,'UTF-8'));   
