@@ -35,7 +35,7 @@
                           <th>#</th>
                           <th>Nombre de carrera</th>
                           <th>Universidad</th>
-                          <th>Grado</th>
+                          <th>Grado Academico</th>
                           <th>Tipo de Acreditacion</th>
                           <th>Persona</th>
                           <th>Accion</th>
@@ -98,7 +98,7 @@
   </div>
 </div>
 <!-- Modal de editar -->
-<div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -132,7 +132,7 @@
       </div>
     </div>
   </div>
-</div>   
+</|div-->   
      <!-- Modal -->
     <!-- /.content -->
     <script>

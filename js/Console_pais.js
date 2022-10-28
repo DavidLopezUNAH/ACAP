@@ -55,8 +55,8 @@ function AbrirRegistro(){
 }
 
 function Registrar_Pais(){
-    let tbl_pais = document.getElementById('txt_pais').value;
-    if(tbl_pais.length==0 ){
+    let pais = document.getElementById('txt_pais').value;
+    if(pais.length==0 ){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -64,14 +64,14 @@ function Registrar_Pais(){
         "url":"../controller/PAIS/controlador_registro_pais.php",
         type:'POST',
         data:{
-           a:tbl_pais,
+           pais:pais
             
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Datos Actualizados","success").then((value)=>{
-                    tbl_tiposolicitudes.ajax.reload();
+                    tbl_pais.ajax.reload();
                     $("#modal_editar").modal('hide');
                 });
             }else{
@@ -101,7 +101,7 @@ function Modificar_Pais(){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Datos Actualizados","success").then((value)=>{
-                    tbl_area.ajax.reload();
+                    tbl_pais.ajax.reload();
                     $("#modal_editar").modal('hide');
                 });
             }else{

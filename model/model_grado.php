@@ -20,7 +20,7 @@
 
         public function Registrar_Grado($grado){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL REGISTRAR_GRADO(?)";
+            $sql = "CALL SP_REGISTRAR_GRADO(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query -> bindParam(1,$grado);

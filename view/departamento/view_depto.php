@@ -33,7 +33,6 @@
                   <thead>
                       <tr>
                           <th>#</th>
-                          <th>codigo</th>
                           <th>Departamento</th>
                           <th>Descripcion</th>
                           <th>Acción</th>

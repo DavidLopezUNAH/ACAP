@@ -15,7 +15,6 @@ function Listar_depto(){
         },
         "columns":[
             {"defaultContent":""},
-            {"data":"cod_departamento"},
             {"data":"nombre_depto"},
             {"data":"descripcion"},
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},

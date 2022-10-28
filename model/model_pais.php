@@ -18,12 +18,12 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Registrar_Pais($nombre_pais){
+        public function Registrar_Pais($pais){
             $c = conexionBD::conexionPDO();
             $sql = "CALL 	INS_PAIS(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$nombre_pais);
+            $query -> bindParam(1,$pais);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;

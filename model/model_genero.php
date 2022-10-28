@@ -20,7 +20,7 @@
         
         public function Registrar_Genero($genero){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL REGISTRAR_GENERO(?)";
+            $sql = "CALL SP_REGISTRAR_GENERO(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);            
             $query -> bindParam(1,$genero);
