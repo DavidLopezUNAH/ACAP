@@ -65,6 +65,11 @@
                 <label for="">Ingrese el Nombre de la universidad:</label>
                 <input type="text" class="form-control" id="txt_universidad">
             </div>
+            <div class="col-6">
+              <label for="">País</label>
+              <select class="js-example-basic-single" id="select_pais" style="width:100%">
+              </select>
+            </div>
           
         </div>
       </div>
@@ -106,11 +111,10 @@
 <!-- Modal -->
     <!-- /.content -->
     <script>
-      $(document).ready(function() {
+       $(document).ready(function() {
         listar_universidad();
+        $('.js-example-basic-single').select2();
+        Cargar_Select_pais();
       } );
-      $('#modal_registro').on('shown.bs.modal', function () {
-        $('#txt_universidad').trigger('focus')
-       })
     </script>
   
