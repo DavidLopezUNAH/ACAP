@@ -153,6 +153,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','cargo/view_cargo.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Cargo
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','tipoacreditacion/view_tipoacreditacion.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Tipo de Acreditacion
+              </p>
+            </a>
+          </li>
           <?php 
           } 
           ?>
