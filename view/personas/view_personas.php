@@ -58,7 +58,7 @@
     </div>
     <!-- /.content -->
 <!-- Modal -->
-<div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_registro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -123,7 +123,7 @@
     </div>
   </div>
 </div>  
-<div class="modal fade" id="modal_registro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -134,48 +134,51 @@
       </div>
       <div class="modal-body">
         <div class="row">
+        <input type="text" id="txt_idpersona" hidden>
           <div class="col-6">
             <label for="">Primer Nombre:</label>
-            <input type="text" class="form-control" id="txt_pnombre">
+            <input type="text" class="form-control" id="txt_pnombre_editar">            
           </div>
           <div class="col-6">
             <label for="">Segundo Nombre:</label>
-            <input type="text" class="form-control" id="txt_snombre">
+            <input type="text" class="form-control" id="txt_snombre_editar">
+            <input type="text" id="txt_idpersona" hidden>
           </div>
           <div class="col-6">
             <label for="">Primer Apellido:</label>
-            <input type="text" class="form-control" id="txt_papellido">
+            <input type="text" class="form-control" id="txt_papellido_editar">
           </div>
           <div class="col-6">
             <label for="">Segundo Apellido:</label>
-            <input type="text" class="form-control" id="txt_sapellido">
+            <input type="text" class="form-control" id="txt_sapellido_editar">
           </div>
           <div class="col-6">
             <label for="">Fecha de Nacimiento:</label>
-            <input type="date" class="form-control" id="txt_fechnac">
+            <input type="date" class="form-control" id="txt_fechnac_editar">
+            <input type="text" id="txt_idpersona" hidden>
           </div>
           <div class="col-6">
             <label for="">Grado Academico:</label>
-            <input type="text" class="form-control" id="txt_grado">
+            <input type="text" class="form-control" id="txt_grado_editar">
           </div>
           <div class="col-6">
               <label for="">Estado Civil:</label>
-              <select class="js-example-basic-single" id="select_ecivil" style="width:100%">
+              <select class="js-example-basic-single" id="select_ecivil_editar" style="width:100%">
               </select>
             </div>
             <div class="col-6">
               <label for="">Tipo de Persona:</label>
-              <select class="js-example-basic-single" id="select_tpersona" style="width:100%">
+              <select class="js-example-basic-single" id="select_tpersona_editar" style="width:100%">
               </select>
             </div>
             <div class="col-6">
               <label for="">Pais:</label>
-              <select class="js-example-basic-single" id="select_pais" style="width:100%">
+              <select class="js-example-basic-single" id="select_pais_editar" style="width:100%">
               </select>
             </div>
             <div class="col-6">
               <label for="">Genero:</label>
-              <select class="js-example-basic-single" id="select_genero" style="width:100%">
+              <select class="js-example-basic-single" id="select_genero_editar" style="width:100%">
               </select>
             </div>
                 
@@ -183,7 +186,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" onclick="Registrar_Persona()">Ingresar</button>
+        <button type="button" class="btn btn-success" onclick="Modificar_Persona()">Modificar</button>
       </div>
     </div>
   </div>

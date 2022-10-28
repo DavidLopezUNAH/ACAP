@@ -1,14 +1,15 @@
-<script src="../js/console.genero.js?rev=<?php echo time();?>"></script>
+<<script src="../js/console_estado.js?rev=<?php echo time();?>"></script>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
+            <h1 class="m-0">MANTENIMIENTO ESTADO</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Genero</li>
+              <li class="breadcrumb-item active">ESTADO</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,16 +25,17 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-              <h1 class="m-0">MANTENIMIENTO TABLA GENERO</h1>
-                <button class="btn btn-danger btn-sm float-right" onclick="AbrirRegistro()"> <i class="fas fa-plus"> </i> Agregar un Nuevo Genero</button>
+                <h3 class="card-title"><b>Listado de Estados</b></h3>
+                <button class="btn btn-danger btn-sm float-right" onclick="AbrirRegistro()"> <i class="fas fa-plus"> </i> Agregar un Nuevo Estado</button>
               </div>
               <div class="card-body">
-              <table id="tabla_genero" class="display" style="width:100%">
+              <table id="tabla_estado" class="display" style="width:100%">
                   <thead>
                       <tr>
                           <th>Codigo</th>
-                          <th>Nombre Genero</th>
+                          <th>Nombre Estado</th>
                           <th>Acción para editar</th>
+                          <th>Acción para eliminar</th>
                       </tr>
                   </thead>
               </table>
@@ -52,7 +54,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">REGISTRO DE GENERO</h5>
+        <h5 class="modal-title" id="exampleModalLabel">REGISTRO DE ESTADO</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -60,14 +62,14 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-12">
-                <label for="">Ingrese el Nombre del Genero:</label>
-                <input type="text" class="form-control" id="txt_genero">
+                <label for="">Ingrese el Estado:</label>
+                <input type="text" class="form-control" id="txt_estado">
             </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" onclick="Registrar_Genero()">Ingresar</button>
+        <button type="button" class="btn btn-success" onclick="Registrar_Estado()">Ingresar</button>
       </div>
     </div>
   </div>
@@ -77,7 +79,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">EDITAR DATOS DEL GENERO</h5>
+        <h5 class="modal-title" id="exampleModalLabel">EDITAR DATOS DEL ESTADO</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -85,15 +87,15 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-12">
-                <label for="">Nombre Genero:</label>
-                <input type="text" class="form-control" id="txt_genero_editar">
-                <input type="text" id="txt_idgenero" hidden>
+                <label for="">Nombre del Estado:</label>
+                <input type="text" class="form-control" id="txt_estado_editar">
+                <input type="text" id="txt_idestado" hidden>
             </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" onclick="Modificar_Genero()">Modificar</button>
+        <button type="button" class="btn btn-success" onclick="Modificar_Estado()">Modificar</button>
       </div>
     </div>
   </div>
@@ -102,7 +104,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ELIMINAR DATOS DE TIPO GENERO</h5>
+        <h5 class="modal-title" id="exampleModalLabel">ELIMINAR DATOS DE ESTADO</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -110,23 +112,22 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-12">
-                <label for="">¿Desea eliminar el tipo de genero seleccionado?</label>
-                <input type="text" id="txt_idgenero">
+                <label for="">¿Desea eliminar el estado  seleccionado?</label>
             </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-success" onclick="Eliminar_Genero()">Eliminar</button>
+        <button type="button" class="btn btn-success" onclick="Eliminar_Estado()">Eliminar</button>
       </div>
     </div>
   </div>
 </div>   
    <script>
       $(document).ready(function() {
-        listar_genero();
+        Listar_Estado();
       } );
       $('#modal_registro').on('shown.bs.modal', function () {
-        $('#txt_genero').trigger('focus')
+        $('#txt_estado').trigger('focus')
        })
     </script>

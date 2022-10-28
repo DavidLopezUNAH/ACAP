@@ -32,7 +32,7 @@
             conexionBD::cerrar_conexion();
         }
 
-       /* public function Modificar_Depto($depto,$des){
+        public function Modificar_Depto($depto,$des){
             $c = conexionBD::conexionPDO();
             $sql = "CALL SP_MODIFICAR_DEPARTAMENTO(?,?)";
             $arreglo = array();
@@ -44,7 +44,7 @@
                     return $row;
             }
             conexionBD::cerrar_conexion();
-        }*/
+        }
 
        
 
