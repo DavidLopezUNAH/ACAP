@@ -25,17 +25,18 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title"><b>Listado de areas</b></h3>
+                <h3 class="card-title"><b>Departamento</b></h3>
                 <button class="btn btn-danger btn-sm float-right" onclick="AbrirRegistro()"> <i class="fas fa-plus"> </i>Nuevo Registro</button>
               </div>
               <div class="card-body">
-              <table id="tabla_area" class="display" style="width:100%">
+              <table id="tabla_depto" class="display" style="width:100%">
                   <thead>
                       <tr>
                           <th>#</th>
+                          <th>codigo</th>
                           <th>Departamento</th>
                           <th>Descripcion</th>
-                          <th>Accion</th>
+                          <th>Acción</th>
                       </tr>
                   </thead>
               </table>
@@ -48,28 +49,29 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content --> 
-<!-- Modal de registro -->
-<div class="modal fade" id="modal_registro"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- /.content -->
+<!-- Modal -->
+<div class="modal fade" id="modal_registro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">REGISTRO DE DEPARTAMENTO</h5>
+        <h5 class="modal-title" id="exampleModalLabel">REGISTRO DEPARTAMENTO</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="row">
+           
             <div class="col-12">
-                <label for="">Departamento</label>
+                <label for="">DEPARTAMENTO</label>
                 <input type="text" class="form-control" id="txt_depto">
             </div>
             <div class="col-12">
                 <label for="">Descripcion</label>
                 <input type="text" class="form-control" id="txt_des">
             </div>
-        
+          
         </div>
       </div>
       <div class="modal-footer">
@@ -78,8 +80,9 @@
       </div>
     </div>
   </div>
-</div>
-<!-- Modal de editar -->
+</div>    
+
+<!-- Modal -->
 <div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -91,32 +94,33 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <div class="col-12">
-                <label for="">DEPARTAMENTO</label>
+        <div class="col-12">
+                <label for="">DEPTO</label>
                 <input type="text" class="form-control" id="txt_depto_editar">
-                <input type="text" id="txt_area" hidden>
+                <input type="text" id="txt_depto" hidden>
             </div>
             <div class="col-12">
                 <label for="">DESCRIPCION</label>
                 <input type="text" class="form-control" id="txt_des_editar">
                 <input type="text" id="txt_des" hidden>
             </div>
-           
+              
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" onclick="Modificar_Depto()">MODIFICAR</button>
+        <button type="button" class="btn btn-success" onclick="Modificar_Depto()">Modificar</button>
       </div>
     </div>
   </div>
-</div>    
-    <!-- Modal -->
-    <!-- /.content -->
+</div>   
+
+
     <script>
       $(document).ready(function() {
-        listar_area();
-        $('.js-example-basic-single').select2();
-        Cargar_Select_dep();
+        Listar_depto();
       } );
+      $('#modal_registro').on('shown.bs.modal', function () {
+        $('#txt_depto').trigger('focus')
+       })
     </script>

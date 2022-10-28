@@ -153,6 +153,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>     
+
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','departamento/view_depto.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Departamento
+              </p>
+            </a>
+          </li>    
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','tiposolicitud/view_tiposolicitud.php')" class="nav-link">
               <i class="nav-icon fas fa-file-signature"></i>

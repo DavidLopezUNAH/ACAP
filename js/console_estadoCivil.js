@@ -50,8 +50,8 @@ function AbrirRegistro(){
 }
 
 function Registrar_EstadoCivil(){
-    let tbl_estadocivil = document.getElementById('txt_estadocivil').value;
-    if(tbl_estadocivil.length==0){
+    let est = document.getElementById('txt_estadocivil').value;
+    if(est.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -59,14 +59,14 @@ function Registrar_EstadoCivil(){
         "url":"../controller/Estado_civil/controlador_registrar_estadoCivil.php",
         type:'POST',
         data:{
-            a:tbl_estadocivil
+            est:est
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
-                Swal.fire("Mensaje de Confirmacion","Nuevo estado civil registrad","success").then((value)=>{
+                Swal.fire("Mensaje de Confirmacion","Nuevo estado civil registrado","success").then((value)=>{
                     document.getElementById('txt_estadocivil').value="";
-                    tbl_estadocivil.ajax.reload();
+                    tbl_estadoC.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
             }else{
