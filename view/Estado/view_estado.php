@@ -1,4 +1,4 @@
-<script src="../js/console_estado.js?rev=<?php echo time();?>"></script>
+<<script src="../js/console_estado.js?rev=<?php echo time();?>"></script>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">

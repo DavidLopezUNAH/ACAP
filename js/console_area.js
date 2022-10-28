@@ -17,7 +17,7 @@ function listar_area(){
             {"defaultContent":""},
             {"data":"nombre_area"},
             {"data":"descripcion"},
-            {"data":"cod_departamento",
+            {"data":"nombre_depto",
            
             },
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
@@ -41,9 +41,10 @@ $('#tabla_area').on('click','.editar',function(){
 		var data = tbl_area.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
+    document.getElementById('txt_idearea').value=data.cod_area;
     document.getElementById('txt_area_editar').value=data.nombre_area;
     document.getElementById('txt_des_editar').value=data.descripcion;
-    document.getElementById('select_dep_editar').value=data.cod_departamento;
+    $("#select_dep_editar").select2().val(data.cod_departamento).trigger('change.select2');
 })
 
 
@@ -88,10 +89,11 @@ function Registrar_Area(){
 }
 
 function Modificar_Area(){
+    let id   = document.getElementById('txt_idearea').value;
     let area   = document.getElementById('txt_area_editar').value;
     let des = document.getElementById('txt_des_editar').value;
     let dep = document.getElementById('select_dep_editar').value;
-    if(area.length==0 || des.length==0 || dep.length==0){
+    if(id.length==0 ||area.length==0 || des.length==0 || dep.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -99,6 +101,7 @@ function Modificar_Area(){
         "url":"../controller/area/controlador_modificar_area.php",
         type:'POST',
         data:{
+            id:id,
             area:area,
             des:des,
             dep:dep

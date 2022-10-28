@@ -144,6 +144,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Area
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','carreras/view_carrera.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Carreras Universitarias
+              </p>
+            </a>
           </li>         
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','estado_civil/view_estadoCivil.php')" class="nav-link">
@@ -153,6 +161,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>     
+
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','departamento/view_depto.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Departamento
+              </p>
+            </a>
+          </li>  
+
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','tiposolicitud/view_tiposolicitud.php')" class="nav-link">
               <i class="nav-icon fas fa-file-signature"></i>
@@ -161,15 +179,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+  
           <li class="nav-item">
-            <a onclick="cargar_contenido('contenido_principal','Pais/view_pais.php')" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+
+            <a onclick="cargar_contenido('contenido_principal','grado/view_grado.php')" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
               <p>
-               Pais
+                Grado Academico
               </p>
             </a>
-          </li>     
+          </li>
           <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','universidad/view_universidad.php')" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Univerisidades
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','cargo/view_cargo.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Cargo
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','tipoacreditacion/view_tipoacreditacion.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Tipo de Acreditacion
+              </p>
+            </a>
+          </li>
+
           <?php 
           } 
           ?>
@@ -181,8 +225,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>   
-        
-        
+          <li class="nav-item">
+
+<a onclick="cargar_contenido('contenido_principal','Pais/view_pais.php')" class="nav-link">
+  <i class="nav-icon fas fa-th"></i>
+  <p>
+   Pais
+  </p>
+</a>
+</li>      
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

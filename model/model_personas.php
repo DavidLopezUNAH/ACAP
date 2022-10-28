@@ -6,7 +6,7 @@
 
         public function Listar_Personas(){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SEL_Personas";
+            $sql = "CALL SEL_Personas()";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query->execute();
@@ -18,9 +18,9 @@
             conexionBD::cerrar_conexion();
         }  
 
-        public function Registrar_Personas($p_nombre, $s_nombre, $p_apellido, $s_apellido, $fech, $grado, $estadocivil, $t_persona, $npais, $ngenero){
+        public function Registrar_Persona($p_nombre, $s_nombre, $p_apellido, $s_apellido, $fech, $grado, $estadocivil, $t_persona, $npais, $ngenero){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL Ingresar_Persona(?,?,?,?,?,?,?,?,?,?)";
+            $sql = "CALL INS_PERSONAS(?,?,?,?,?,?,?,?,?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);            
             $query -> bindParam(1,$p_nombre);
@@ -40,22 +40,89 @@
             conexionBD::cerrar_conexion();
         } 
 
-        
-        /*
-        public function Modificar_Personas($cod_ts,$nombre_ts){
+        public function Modificar_Persona($cod_persona, $p_nombre, $s_nombre, $p_apellido, $s_apellido, $fech, $grado, $estadocivil, $t_persona, $npais, $ngenero){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL ACTUALIZAR_Personas(?,?)";
+            $sql = "CALL MODIFICAR_PERSONAS(?,?,?,?,?,?,?,?,?,?,?)";
+            $arreglo = array();
+            $query  = $c->prepare($sql); 
+            $query -> bindParam(1,$cod_persona);           
+            $query -> bindParam(2,$p_nombre);
+            $query -> bindParam(3,$s_nombre);
+            $query -> bindParam(4,$p_apellido);
+            $query -> bindParam(5,$s_apellido);
+            $query -> bindParam(6,$fech);
+            $query -> bindParam(7,$grado);
+            $query -> bindParam(8,$estadocivil);
+            $query -> bindParam(9,$t_persona);
+            $query -> bindParam(10,$npais);
+            $query -> bindParam(11,$ngenero);
+            $query -> execute();
+            $resul=$query->execute();
+            if($resul){
+                return 1;
+            } else{
+             return 0;                          
+            }            
+            conexionBD::cerrar_conexion();
+        }
+
+        public function Cargara_Select_ecivil(){
+            $c = conexionBD::conexionPDO();
+            $sql = "CALL SEL_Estado_civil()";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$cod_ts);
-            $query -> bindParam(2,$nombre_ts);
             $query->execute();
-            if($row = $query->fetchColumn()){
-                    return $row;
+            $resultado = $query->fetchAll();
+            foreach($resultado as $resp){
+                $arreglo[]=$resp;
             }
+            return $arreglo;
             conexionBD::cerrar_conexion();
-        }*/
+        }
 
+        public function Cargara_Select_tipopersona(){
+            $c = conexionBD::conexionPDO();
+            $sql = "CALL SEL_tipo_personas()";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query->execute();
+            $resultado = $query->fetchAll();
+            foreach($resultado as $resp){
+                $arreglo[]=$resp;
+            }
+            return $arreglo;
+            conexionBD::cerrar_conexion();
+        }
+
+        public function Cargara_Select_pais(){
+            $c = conexionBD::conexionPDO();
+            $sql = "CALL SEL_pais()";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query->execute();
+            $resultado = $query->fetchAll();
+            foreach($resultado as $resp){
+                $arreglo[]=$resp;
+            }
+            return $arreglo;
+            conexionBD::cerrar_conexion();
+        }
+
+        public function Cargara_Select_Genero(){
+            $c = conexionBD::conexionPDO();
+            $sql = "CALL SEL_Genero()";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query->execute();
+            $resultado = $query->fetchAll();
+            foreach($resultado as $resp){
+                $arreglo[]=$resp;
+            }
+            return $arreglo;
+            conexionBD::cerrar_conexion();
+        }
+
+        
     }
 
 ?>

@@ -17,7 +17,7 @@ function listar_genero(){
             {"defaultContent":""},
             {"data":"nombre_genero"},
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
-            {"defaultContent":"<button class='eliminar btn btn-primary'><i class='fa fa-trash'></i></button>"},
+         
             
         ],
   
@@ -67,7 +67,7 @@ function Registrar_Genero(){
         "url":"../controller/genero/controlador_registro_genero.php",
         type:'POST',
         data:{
-            a:tbl_genero
+            a : tbl_genero
         }
     }).done(function(resp){
         if(resp>0){
@@ -87,9 +87,9 @@ function Registrar_Genero(){
 }
 
 function Modificar_Genero(){
-    let cod_genero  = document.getElementById('txt_idgenero').value;
-    let nombre_genero = document.getElementById('txt_genero_editar').value;
-    if(nombre_genero.length==0 || cod_genero.length==0){
+    let id  = document.getElementById('txt_idgenero').value;
+    let genero = document.getElementById('txt_genero_editar').value;
+    if(genero.length==0 || id.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -97,8 +97,8 @@ function Modificar_Genero(){
         "url":"../controller/genero/controlador_modificar_genero.php",
         type:'POST',
         data:{
-            cod_genero : cod_genero,
-            nombre_genero: nombre_genero,
+            id:id,
+           gene:genero
  
         }
     }).done(function(resp){
@@ -115,7 +115,7 @@ function Modificar_Genero(){
             return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
         }
     })
-  }
+}
  
     function Eliminar_Genero(){
         let cod_genero = document.getElementById('txt_idgenero').value;  

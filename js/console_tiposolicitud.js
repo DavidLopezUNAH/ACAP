@@ -17,7 +17,6 @@ function listar_tiposolicitud(){
             {"defaultContent":""},
             {"data":"nombre_tipo_solicitud"},            
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
-            {"defaultContent":"<button class='eliminar btn btn-primary'><i class='fa fa-trash'></i></button>"},
         ],
   
         "language":idioma_espanol,

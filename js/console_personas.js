@@ -25,8 +25,7 @@ function listar_personas(){
             {"data":"nombre_tipo_persona"},
             {"data":"nombre_pais"},
             {"data":"nombre_genero"},
-            {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
-            {"defaultContent":"<button class='eliminar btn btn-primary'><i class='fa fa-trash'></i></button>"},
+            {"defaultContent":"<button class='editar btn btn-primary btn-sm'><i class='fa fa-edit'></i></button>"},
         ],
   
         "language":idioma_espanol,
@@ -102,9 +101,72 @@ function Registrar_Persona(){
   })
 }
 
-function Cargar_Select_ECivil(){
+function Modificar_Persona(){
+    let cod_persona = document.getElementById('txt_idpersona').value;
+    let p_nombre = document.getElementById('txt_pnombre_editar').value;
+    let s_nombre = document.getElementById('txt_snombre_editar').value;
+    let p_apellido = document.getElementById('txt_papellido_editar').value;
+    let s_apellido = document.getElementById('txt_sapellido_editar').value;
+    let fech_nac = document.getElementById('txt_fechnac_editar').value;
+    let grado = document.getElementById('txt_grado_editar').value;
+    let e_civil = document.getElementById('select_ecivil_editar').value;
+    let t_persona = document.getElementById('select_tpersona_editar').value;
+    let pais = document.getElementById('select_pais_editar').value;
+    let genero = document.getElementById('select_genero_editar').value;
+    if(p_nombre.length==0 ||s_nombre.length==0 ||p_apellido.length==0 ||s_apellido.length==0 || fech_nac.length==0
+      || grado.length==0 ||e_civil.length==0 ||t_persona.length==0 || pais.length==0 ||genero.length==0){
+        return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
+    }
+  
     $.ajax({
-        "url":"../controller/usuario/controlador_cargar_estadocivil.php",
+        "url":"../controller/personas/controlador_modificar_personas.php",
+        type:'POST',
+        data:{
+            cod_persona :cod_persona ,
+            p_nombre:p_nombre,
+            s_nombre:s_nombre,
+            p_apellido:p_apellido,
+            s_apellido:s_apellido,
+            fech_nac:fech_nac,
+            grado : grado ,
+            e_civil:e_civil,
+            t_persona:t_persona,
+            pais:pais,
+            genero:genero
+        }
+    }).done(function(resp){
+        if(resp>0){            
+                Swal.fire("Mensaje de Confirmacion","Datos de la persona actualizados","success").then((value)=>{
+                    tbl_persona.ajax.reload();
+                    $("#modal_editar").modal('hide');
+                });
+        }else{
+            return Swal.fire("Mensaje de Error","No se completo la actualizacion","error");            
+        }
+    })
+}
+
+$('#tabla_personas').on('click','.editar',function(){
+	var data = tbl_persona.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_persona.row(this).child.isShown()){
+		var data = tbl_persona.row(this).data();
+	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
+    $("#modal_editar").modal('show');
+    document.getElementById('txt_pnombre_editar').value=data.primer_nombre;
+    document.getElementById('txt_snombre_editar').value=data.segundo_nombre;
+    document.getElementById('txt_papellido_editar').value=data.primer_apellido;
+    document.getElementById('txt_sapellido_editar').value=data.segundo_apellido;
+    document.getElementById('txt_fechnac_editar').value=data.fecha_nac;
+    document.getElementById('txt_grado_editar').value=data.grado_academico;
+    $("#select_ecivil_editar").select2().val(data.cod_estado_civil).trigger('change.select2');
+    $("#select_tpersona_editar").select2().val(data.cod_tipo_persona).trigger('change.select2');
+    $("#select_pais_editar").select2().val(data.cod_pais).trigger('change.select2');
+    $("#select_genero_editar").select2().val(data.cod_genero).trigger('change.select2');
+})
+
+function Cargar_Select_ecivil(){
+    $.ajax({
+        "url":"../controller/personas/controlador_cargar_estadocivil.php",
         type:'POST'
     }).done(function(resp){
         let data = JSON.parse(resp);
@@ -114,12 +176,78 @@ function Cargar_Select_ECivil(){
                 cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
             }
             document.getElementById('select_ecivil').innerHTML=cadena;
-            document.getElementById('select_area_editar').innerHTML=cadena;
+            document.getElementById('select_ecivil_editar').innerHTML=cadena;
 
         }else{
-            cadena+="<option value=''>No hay empleados disponibles</option>";
-            document.getElementById('select_area').innerHTML=cadena;
-            document.getElementById('select_area_editar').innerHTML=cadena;
+            cadena+="<option value=''>No hay Estados Civiles disponibles</option>";
+            document.getElementById('select_ecivil').innerHTML=cadena;            
+            document.getElementById('select_ecivil_editar').innerHTML=cadena;
+        }
+    })
+}
+
+function Cargar_Select_tipopersona(){
+    $.ajax({
+        "url":"../controller/personas/controlador_cargar_tipopersona.php",
+        type:'POST'
+    }).done(function(resp){
+        let data = JSON.parse(resp);
+        if(data.length>0){
+            let cadena = "";
+            for (let i = 0; i < data.length; i++) {
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            document.getElementById('select_tpersona').innerHTML=cadena;
+            document.getElementById('select_tpersona_editar').innerHTML=cadena;
+
+        }else{
+            cadena+="<option value=''>No hay Estados Civiles disponibles</option>";
+            document.getElementById('select_tpersona').innerHTML=cadena;
+            document.getElementById('select_tpersona_editar').innerHTML=cadena;
+        }
+    })
+}
+
+function Cargar_Select_pais(){
+    $.ajax({
+        "url":"../controller/personas/controlador_cargar_pais.php",
+        type:'POST'
+    }).done(function(resp){
+        let data = JSON.parse(resp);
+        if(data.length>0){
+            let cadena = "";
+            for (let i = 0; i < data.length; i++) {
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            document.getElementById('select_pais').innerHTML=cadena;
+            document.getElementById('select_pais_editar').innerHTML=cadena;
+
+        }else{
+            cadena+="<option value=''>No hay Estados Civiles disponibles</option>";
+            document.getElementById('select_pais').innerHTML=cadena;
+            document.getElementById('select_pais_editar').innerHTML=cadena;
+        }
+    })
+}
+
+function Cargar_Select_genero(){
+    $.ajax({
+        "url":"../controller/personas/controlador_cargar_genero.php",
+        type:'POST'
+    }).done(function(resp){
+        let data = JSON.parse(resp);
+        if(data.length>0){
+            let cadena = "";
+            for (let i = 0; i < data.length; i++) {
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            document.getElementById('select_genero').innerHTML=cadena;
+            document.getElementById('select_genero_editar').innerHTML=cadena;
+
+        }else{
+            cadena+="<option value=''>No hay Estados Civiles disponibles</option>";
+            document.getElementById('select_genero').innerHTML=cadena;
+            document.getElementById('select_genero_editar').innerHTML=cadena;
         }
     })
 }

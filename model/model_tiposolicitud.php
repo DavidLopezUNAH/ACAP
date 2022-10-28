@@ -20,7 +20,7 @@
         
         public function Registrar_TipoSolicitud($nombre_ts){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL Ingresar_Tipo_de_solicitud(?)";
+            $sql = "CALL INS_TIPO_SOLICITUD(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);            
             $query -> bindParam(1,$nombre_ts);

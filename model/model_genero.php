@@ -6,7 +6,7 @@
 
         public function Listar_Genero(){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SEL_Genero";
+            $sql = "CALL SP_LISTAR_GENERO()";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query->execute();
@@ -18,12 +18,12 @@
             conexionBD::cerrar_conexion();
         }  
         
-        public function Registrar_Genero($nombre_genero){
+        public function Registrar_Genero($genero){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL Ingresar_Genero(?)";
+            $sql = "CALL REGISTRAR_GENERO(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);            
-            $query -> bindParam(1,$nombre_genero);
+            $query -> bindParam(1,$genero);
             $query -> execute();
             if($row = $query->fetchColumn()){
                 return $row;
@@ -31,13 +31,13 @@
             conexionBD::cerrar_conexion();
         } 
 
-        public function Modificar_Genero($cod_genero,$nombre_genero){
+        public function Modificar_Genero($id,$genero){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL ACTUALIZAR_GENERO(?,?)";
+            $sql = "CALL SP_MODIFICAR_GENERO(?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$cod_genero);
-            $query -> bindParam(2,$nombre_genero);
+            $query -> bindParam(1,$id);
+            $query -> bindParam(2,$genero);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;

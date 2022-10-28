@@ -1,9 +1,9 @@
 <?php
     require '../../model/model_genero.php';
     $MU = new Modelo_Genero();//Instaciamos
-    $cod_genero = strtoupper(htmlspecialchars($_POST['cod_genero'],ENT_QUOTES,'UTF-8'));   
-    $nombre_genero = strtoupper(htmlspecialchars($_POST['nombre_genero'],ENT_QUOTES,'UTF-8'));   
-    $consulta = $MU->Modificar_Genero($cod_genero,$nombre_genero);
+    $id = strtoupper(htmlspecialchars($_POST['id'],ENT_QUOTES,'UTF-8'));   
+    $gene = strtoupper(htmlspecialchars($_POST['gene'],ENT_QUOTES,'UTF-8'));   
+    $consulta = $MU->Modificar_Genero($id,$gene);
     echo $consulta;
 
 ?>
