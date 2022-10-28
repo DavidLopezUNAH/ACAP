@@ -170,6 +170,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','grado/view_grado.php')" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Grado Academico
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','universidad/view_universidad.php')" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Univerisidades
+              </p>
+            </a>
+          </li>
           <?php 
           } 
           ?>
