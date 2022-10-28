@@ -1,6 +1,6 @@
-var  tbl_estadoC;
-function Listar_estadoCivil(){
-    tbl_estadoC = $("#tabla_estadocivil").DataTable({
+var tbl_grados;
+function listar_grado(){
+    tbl_grados = $("#tabla_grado").DataTable({
         "ordering":false,   
         "bLengthChange":true,
         "searching": { "regex": false },
@@ -10,13 +10,12 @@ function Listar_estadoCivil(){
         "async": false ,
         "processing": true,
         "ajax":{
-            "url":"../controller/Estado_Civil/controlador_listar_estadoCivil.php",
+            "url":"../controller/grado/controlador_listar_grado.php",
             type:'POST'
         },
         "columns":[
             {"defaultContent":""},
-            {"data":"cod_estado_civil"},
-            {"data":"nombre_estado_civil"},
+            {"data":"nombre_grado"},
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
             
         ],
@@ -24,53 +23,52 @@ function Listar_estadoCivil(){
         "language":idioma_espanol,
         select: true
     });
-    tbl_estadoC.on('draw.td',function(){
-      var PageInfo = $("#tabla_estadocivil").DataTable().page.info();
-      tbl_estadoC.column(0, {page: 'current'}).nodes().each(function(cell, i){
+    tbl_grados.on('draw.td',function(){
+      var PageInfo = $("#tabla_grado").DataTable().page.info();
+      tbl_grados.column(0, {page: 'current'}).nodes().each(function(cell, i){
         cell.innerHTML = i + 1 + PageInfo.start;
       });
     });
 }
 
-$('#tabla_estadocivil').on('click','.editar',function(){
-	var data = tbl_estadoC.row($(this).parents('tr')).data();//En tamaño escritorio
-	if(tbl_estadoC.row(this).child.isShown()){
-		var data = tbl_estadoC.row(this).data();
+$('#tabla_grado').on('click','.editar',function(){
+	var data = tbl_grados.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_grados.row(this).child.isShown()){
+		var data = tbl_grados.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
-    document.getElementById('txt_estadocivil_editar').value=data.nombre_estado_civil;
-    document.getElementById('txt_idestadocivil').value=data.cod_estado_civil;
-    
-})
+    document.getElementById('txt_grado_editar').value=data.nombre_grado;
+    document.getElementById('txt_idgrado').value=data.cod_grado;
 
+})
 
 function AbrirRegistro(){
     $("#modal_registro").modal({backdrop:'static',keyboard:false})
     $("#modal_registro").modal('show');
 }
-
-function Registrar_EstadoCivil(){
-    let est = document.getElementById('txt_estadocivil').value;
-    if(est.length==0){
+function Registrar_Grado(){
+    let tbl_grado= document.getElementById('txt_grado').value;
+    if(tbl_grado.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
     $.ajax({
-        "url":"../controller/Estado_civil/controlador_registrar_estadoCivil.php",
+        "url":"../controller/grado/controlador_registro_grado.php",
         type:'POST',
         data:{
-            est:est
+            a:tbl_grado
+           
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
-                Swal.fire("Mensaje de Confirmacion","Nuevo estado civil registrado","success").then((value)=>{
-                    document.getElementById('txt_estadocivil').value="";
-                    tbl_estadoC.ajax.reload();
+                Swal.fire("Mensaje de Confirmacion","Nuevo Grado Academico  Registrado","success").then((value)=>{
+                    document.getElementById('txt_grado').value="";
+                    tbl_grados.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
             }else{
-                Swal.fire("Mensaje de Advertencia","El estado civil ingresado ya se encuentra en la base de datos","warning");
+                Swal.fire("Mensaje de Advertencia","El grado academico ya se encuentra en la base de datos","warning");
             }
         }else{
             return Swal.fire("Mensaje de Error","No se completo el registro","error");            
@@ -78,27 +76,26 @@ function Registrar_EstadoCivil(){
     })
 }
 
-function Modificar_EstadoCivil(){
-    let id   = document.getElementById('txt_idestadocivil').value;
-    let estadocivil = document.getElementById('txt_estadocivil_editar').value;
-    
-    if(estadocivil.length==0 || id.length==0){
+function Modificar_Grado(){
+    let id   = document.getElementById('txt_idgrado').value;
+    let grado = document.getElementById('txt_grado_editar').value;
+    if(grado.length==0 || id.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
     $.ajax({
-        "url":"../controller/Estado_civil/controlador_modificar_estadoCivil.php",
+        "url":"../controller/grado/controlador_modificar_grado.php",
         type:'POST',
         data:{
             id:id,
-            estadocivil:estadocivil,
+            gra:grado
             
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Datos Actualizados","success").then((value)=>{
-                    tbl_estadocivil.ajax.reload();
+                    tbl_grados.ajax.reload();
                     $("#modal_editar").modal('hide');
                 });
             }else{
@@ -109,3 +106,23 @@ function Modificar_EstadoCivil(){
         }
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

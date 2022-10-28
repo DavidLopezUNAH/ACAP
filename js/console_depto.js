@@ -1,6 +1,6 @@
-var  tbl_estadoC;
-function Listar_estadoCivil(){
-    tbl_estadoC = $("#tabla_estadocivil").DataTable({
+var  tbl_departamentos;
+function Listar_depto(){
+    tbl_departamentos = $("#tabla_depto").DataTable({
         "ordering":false,   
         "bLengthChange":true,
         "searching": { "regex": false },
@@ -10,13 +10,14 @@ function Listar_estadoCivil(){
         "async": false ,
         "processing": true,
         "ajax":{
-            "url":"../controller/Estado_Civil/controlador_listar_estadoCivil.php",
+            "url":"../controller/Departamento/controlador_listar_depto.php",
             type:'POST'
         },
         "columns":[
             {"defaultContent":""},
-            {"data":"cod_estado_civil"},
-            {"data":"nombre_estado_civil"},
+            {"data":"cod_departamento"},
+            {"data":"nombre_depto"},
+            {"data":"descripcion"},
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
             
         ],
@@ -24,22 +25,23 @@ function Listar_estadoCivil(){
         "language":idioma_espanol,
         select: true
     });
-    tbl_estadoC.on('draw.td',function(){
-      var PageInfo = $("#tabla_estadocivil").DataTable().page.info();
-      tbl_estadoC.column(0, {page: 'current'}).nodes().each(function(cell, i){
+    tbl_departamentos.on('draw.td',function(){
+      var PageInfo = $("#tabla_depto").DataTable().page.info();
+      tbl_departamentos.column(0, {page: 'current'}).nodes().each(function(cell, i){
         cell.innerHTML = i + 1 + PageInfo.start;
       });
     });
 }
 
-$('#tabla_estadocivil').on('click','.editar',function(){
-	var data = tbl_estadoC.row($(this).parents('tr')).data();//En tamaño escritorio
-	if(tbl_estadoC.row(this).child.isShown()){
-		var data = tbl_estadoC.row(this).data();
+$('#tabla_depto').on('click','.editar',function(){
+	var data = tbl_departamentos.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_departamentos.row(this).child.isShown()){
+		var data = tbl_departamentos.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
-    document.getElementById('txt_estadocivil_editar').value=data.nombre_estado_civil;
-    document.getElementById('txt_idestadocivil').value=data.cod_estado_civil;
+    document.getElementById('txt_depto_editar').value=data.nombre_depto;
+    document.getElementById('txt_id_depto').value=data.cod_departamento;
+    document.getElementById('txt_des').value=data.descripcion;
     
 })
 
@@ -49,28 +51,31 @@ function AbrirRegistro(){
     $("#modal_registro").modal('show');
 }
 
-function Registrar_EstadoCivil(){
-    let est = document.getElementById('txt_estadocivil').value;
-    if(est.length==0){
+function Registrar_Depto(){
+    let depto = document.getElementById('txt_depto').value;
+    let des = document.getElementById('txt_des').value;
+    if(depto.length==0 || des.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
     $.ajax({
-        "url":"../controller/Estado_civil/controlador_registrar_estadoCivil.php",
+        "url":"../controller/Departamento/controlador_registrar_depto.php",
         type:'POST',
         data:{
-            est:est
+            depto:depto,
+            des:des
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
-                Swal.fire("Mensaje de Confirmacion","Nuevo estado civil registrado","success").then((value)=>{
-                    document.getElementById('txt_estadocivil').value="";
-                    tbl_estadoC.ajax.reload();
+                Swal.fire("Mensaje de Confirmacion","Nuevo Departamentop registrado","success").then((value)=>{
+                    document.getElementById('txt_depto').value="";
+                    document.getElementById('txt_des').value="";
+                    tbl_departamentos.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
             }else{
-                Swal.fire("Mensaje de Advertencia","El estado civil ingresado ya se encuentra en la base de datos","warning");
+                Swal.fire("Mensaje de Advertencia","El Departamento ingresado ya se encuentra en la base de datos","warning");
             }
         }else{
             return Swal.fire("Mensaje de Error","No se completo el registro","error");            
@@ -78,7 +83,7 @@ function Registrar_EstadoCivil(){
     })
 }
 
-function Modificar_EstadoCivil(){
+/*function Modificar_EstadoCivil(){
     let id   = document.getElementById('txt_idestadocivil').value;
     let estadocivil = document.getElementById('txt_estadocivil_editar').value;
     
@@ -98,7 +103,7 @@ function Modificar_EstadoCivil(){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Datos Actualizados","success").then((value)=>{
-                    tbl_estadocivil.ajax.reload();
+                    tbl_departamentosivil.ajax.reload();
                     $("#modal_editar").modal('hide');
                 });
             }else{
@@ -108,4 +113,4 @@ function Modificar_EstadoCivil(){
             return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
         }
     })
-}
+}*/

@@ -1,12 +1,12 @@
 <?php
     require_once  'model_conexion.php';
 
-    class Modelo_EstadoCivil extends conexionBD{
+    class Modelo_Grado extends conexionBD{
     
 
-        public function Listar_EstadoCivil(){
+        public function Listar_Grado(){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_LISTAR_ESTADOCIVIL()";
+            $sql = "CALL SP_LISTAR_GRADO()";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query->execute();
@@ -18,12 +18,12 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Registrar_EstadoCivil($estadocivil){
+        public function Registrar_Grado($grado){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_REGISTRAR_ESTADOCIVIL(?)";
+            $sql = "CALL REGISTRAR_GRADO(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$estadocivil);
+            $query -> bindParam(1,$grado);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
@@ -31,15 +31,13 @@
             conexionBD::cerrar_conexion();
         }
 
-        
-        public function Modificar_EstadoCivil($id,$estadocivil){
+        public function Modificar_Grado($id,$grado){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_MODIFICAR_ESTADOCIVIL(?,?)";
+            $sql = "CALL SP_MODIFICAR_GRADO(?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query -> bindParam(1,$id);
-            $query -> bindParam(2,$estadocivil);
-            
+            $query -> bindParam(2,$grado);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
@@ -51,4 +49,4 @@
 
     }
 
-?>
+    ?>

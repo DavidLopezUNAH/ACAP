@@ -4,7 +4,7 @@
     class Modelo_Area extends conexionBD{
     
 
-        public function Listar_Area(){
+        public function Listar_Documentos(){
             $c = conexionBD::conexionPDO();
             $sql = "CALL SP_LISTAR_AREA()";
             $arreglo = array();
@@ -18,14 +18,15 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Registrar_Area($area,$des,$dep){
+        public function Registrar_Documentos($nombre_documento,$URL,$tipo_doc,$solicitd){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_REGISTRAR_AREA(?,?,?)";
+            $sql = "CALL SP_REGISTRAR_AREA(?,?,?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$area);
-            $query -> bindParam(2,$des);
-            $query -> bindParam(3,$dep);
+            $query -> bindParam(1,$nombre_documento);
+            $query -> bindParam(2,$URL);
+            $query -> bindParam(3,$tipo_doc);
+            $query -> bindParam(4,$solicitd);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
@@ -33,25 +34,23 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Modificar_Area($id,$area,$des,$dep){
+        public function Modificar_Documento($nombre_documento,$URL,$tipo_doc,$solicitd){
             $c = conexionBD::conexionPDO();
             $sql = "CALL SP_MODIFICAR_AREA(?,?,?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$id);
-            $query -> bindParam(2,$area);
-            $query -> bindParam(3,$des);
-            $query -> bindParam(4,$dep);
+            $query -> bindParam(1,$nombre_documento);
+            $query -> bindParam(2,$URL);
+            $query -> bindParam(3,$tipo_doc);
+            $query -> bindParam(4,$solicitd);
             $query->execute();
-            if($resul){
-                return 1;
-            }else{
-                return 0;
+            if($row = $query->fetchColumn()){
+                    return $row;
             }
             conexionBD::cerrar_conexion();
         }
 
-        public function Cargara_Select_dep(){
+        public function Cargara_Select_tipo_documento(){
             $c = conexionBD::conexionPDO();
             $sql = "CALL SP_CARGAR_SELECT_DEPARTAMENTO()";
             $arreglo = array();
@@ -64,7 +63,20 @@
             return $arreglo;
             conexionBD::cerrar_conexion();
         }
-
+        
+        public function Cargara_Select_Cod_Solicitud(){
+            $c = conexionBD::conexionPDO();
+            $sql = "CALL SP_CARGAR_SELECT_DEPARTAMENTO()";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query->execute();
+            $resultado = $query->fetchAll();
+            foreach($resultado as $resp){
+                $arreglo[]=$resp;
+            }
+            return $arreglo;
+            conexionBD::cerrar_conexion();
+        }
 
         
 

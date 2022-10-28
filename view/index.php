@@ -130,10 +130,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>          
           <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','genero/view_genero.php')" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+               Genero
+              </p>
+            </a>
+          </li>         
+          <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','area/view_area.php')" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Area
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','carreras/view_carrera.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Carreras Universitarias
               </p>
             </a>
           </li>         
@@ -145,11 +161,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>     
+
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','departamento/view_depto.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Departamento
+              </p>
+            </a>
+          </li>  
+
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','tiposolicitud/view_tiposolicitud.php')" class="nav-link">
               <i class="nav-icon fas fa-file-signature"></i>
               <p>
                 Tipo Solicitud
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','grado/view_grado.php')" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Grado Academico
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','universidad/view_universidad.php')" class="nav-link">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+                Univerisidades
               </p>
             </a>
           </li>

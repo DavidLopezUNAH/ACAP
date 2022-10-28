@@ -1,6 +1,6 @@
-var  tbl_genero;
-function Listar_Genero(){
-    tbl_genero = $("#tabla_genero").DataTable({
+var  tbl_generos;
+function listar_genero(){
+    tbl_generos = $("#tabla_genero").DataTable({
         "ordering":false,   
         "bLengthChange":true,
         "searching": { "regex": false },
@@ -10,41 +10,32 @@ function Listar_Genero(){
         "async": false ,
         "processing": true,
         "ajax":{
-            "url":"../controlador/Genero/controlador_listar_genero.php",
+            "url":"../controller/genero/controlador_listar_genero.php",
             type:'POST'
         },
         "columns":[
             {"defaultContent":""},
             {"data":"nombre_genero"},
-
-            {
-                render: function(data,type,row){
-                        if(data=='ACTIVO'){
-                        return '<span class="badge bg-success">ACTIVO</span>';
-                        }else{
-                        return '<span class="badge bg-danger">INACTIVO</span>';
-                        }
-                }   
-            },
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
+            {"defaultContent":"<button class='eliminar btn btn-primary'><i class='fa fa-trash'></i></button>"},
             
         ],
   
         "language":idioma_espanol,
         select: true
     });
-    tbl_genero.on('draw.td',function(){
+    tbl_generos.on('draw.td',function(){
       var PageInfo = $("#tabla_genero").DataTable().page.info();
-      tbl_genero.column(0, {page: 'current'}).nodes().each(function(cell, i){
+      tbl_generos.column(0, {page: 'current'}).nodes().each(function(cell, i){
         cell.innerHTML = i + 1 + PageInfo.start;
       });
     });
 }
 
 $('#tabla_genero').on('click','.editar',function(){
-	var data = tbl_genero.row($(this).parents('tr')).data();//En tamaño escritorio
-	if(tbl_genero.row(this).child.isShown()){
-		var data = tbl_genero.row(this).data();
+	var data = tbl_generos.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_generos.row(this).child.isShown()){
+		var data = tbl_generos.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
     document.getElementById('txt_genero_editar').value=data.nombre_genero;
@@ -52,6 +43,14 @@ $('#tabla_genero').on('click','.editar',function(){
 
 })
 
+$('#tabla_genero').on('click','.eliminar',function(){
+	var data = tbl_generos.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_generos.row(this).child.isShown()){
+		var data = tbl_generos.row(this).data();
+	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
+    $("#modal_eliminar").modal('show');
+    document.getElementById('txt_idtiposolicitud').value=data.cod_genero;
+})
 
 function AbrirRegistro(){
     $("#modal_registro").modal({backdrop:'static',keyboard:false})
@@ -59,23 +58,23 @@ function AbrirRegistro(){
 }
 
 function Registrar_Genero(){
-    let genero = document.getElementById('txt_genero').value;
-    if(genero.length==0){
+    let tbl_genero = document.getElementById('txt_genero').value;
+    if(tbl_genero.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
     $.ajax({
-        "url":"../controlador/Genero/controlador_registrar_genero.php",
+        "url":"../controller/genero/controlador_registro_genero.php",
         type:'POST',
         data:{
-            a:genero
+            tbl_genero : tbl_genero
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Nuevo genero Registrado","success").then((value)=>{
                     document.getElementById('txt_genero').value="";
-                    tbl_genero.ajax.reload();
+                    tbl_generos.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
             }else{
@@ -88,26 +87,25 @@ function Registrar_Genero(){
 }
 
 function Modificar_Genero(){
-    let id   = document.getElementById('txt_idgenero').value;
-    let genero = document.getElementById('txt_genero_editar').value;
-    let esta = document.getElementById('select_estatus').value;
-    if(genero.length==0 || id.length==0){
+    let cod_genero  = document.getElementById('txt_idgenero').value;
+    let nombre_genero = document.getElementById('txt_genero_editar').value;
+    if(nombre_genero.length==0 || cod_genero.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
     $.ajax({
-        "url":"../controlador/Genero/controlador_modificar_genero.php",
+        "url":"../controller/genero/controlador_modificar_genero.php",
         type:'POST',
         data:{
-            id:id,
-            are:genero,
-            esta:esta
+            cod_genero : cod_genero,
+            nombre_genero: nombre_genero,
+ 
         }
     }).done(function(resp){
         if(resp>0){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Datos Actualizados","success").then((value)=>{
-                    tbl_genero.ajax.reload();
+                    tbl_generos.ajax.reload();
                     $("#modal_editar").modal('hide');
                 });
             }else{
@@ -118,3 +116,28 @@ function Modificar_Genero(){
         }
     })
 }
+ 
+    function Eliminar_Genero(){
+        let cod_genero = document.getElementById('txt_idgenero').value;  
+    
+        $.ajax({
+            "url":"../controller/genero/controlador_eliminar_genero.php",
+            type:'POST',
+            data:{
+                cod_genero:cod_genero,
+            }
+        }).done(function(resp){
+            if(resp>0){
+                if(resp==1){
+                    Swal.fire("Mensaje de Confirmacion","Genero Eliminado","success").then((value)=>{
+                        tbl_generos.ajax.reload();
+                        $("#modal_eliminar").modal('hide');
+                    });
+                }else{
+                    Swal.fire("Mensaje de Advertencia","El tipo de genero ingresado ya se encuentra en la base de datos","warning");
+                }
+            }else{
+                return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
+            }
+        })
+    }   
