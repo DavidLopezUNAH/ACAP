@@ -58,8 +58,8 @@ function AbrirRegistro(){
 }
 
 function Registrar_Genero(){
-    let tbl_genero = document.getElementById('txt_genero').value;
-    if(tbl_genero.length==0){
+    let genero = document.getElementById('txt_genero').value;
+    if(genero.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -67,7 +67,7 @@ function Registrar_Genero(){
         "url":"../controller/genero/controlador_registro_genero.php",
         type:'POST',
         data:{
-            tbl_genero : tbl_genero
+            genero : genero
         }
     }).done(function(resp){
         if(resp>0){
