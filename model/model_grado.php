@@ -1,12 +1,12 @@
 <?php
     require_once  'model_conexion.php';
 
-    class Modelo_Depto extends conexionBD{
+    class Modelo_Grado extends conexionBD{
     
 
-        public function Listar_Depto(){
+        public function Listar_Grado(){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_LISTAR_DEPARTAMENTO()";
+            $sql = "CALL SP_LISTAR_GRADO()";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query->execute();
@@ -18,13 +18,12 @@
             conexionBD::cerrar_conexion();
         }
 
-       public function Registrar_Depto($depto,$des){
+        public function Registrar_Grado($grado){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_REGISTRAR_DEPARTAMENTO(?,?)";
+            $sql = "CALL REGISTRAR_GRADO(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$depto);
-            $query -> bindParam(2,$des);
+            $query -> bindParam(1,$grado);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
@@ -32,27 +31,22 @@
             conexionBD::cerrar_conexion();
         }
 
-       /* public function Modificar_Depto($depto,$des){
+        public function Modificar_Grado($id,$grado){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_MODIFICAR_DEPARTAMENTO(?,?)";
+            $sql = "CALL SP_MODIFICAR_GRADO(?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$depto);
-            $query -> bindParam(2,$des);
+            $query -> bindParam(1,$id);
+            $query -> bindParam(2,$grado);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
             }
             conexionBD::cerrar_conexion();
-        }*/
-
-       
-
-
-        
+        }
 
 
 
     }
 
-?>
+    ?>
