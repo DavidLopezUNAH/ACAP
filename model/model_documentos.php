@@ -1,7 +1,7 @@
 <?php
     require_once  'model_conexion.php';
 
-    class Modelo_Area extends conexionBD{
+    class Modelo_Documentos extends conexionBD{
     
 
         public function Listar_Documentos(){

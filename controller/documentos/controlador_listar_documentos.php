@@ -1,7 +1,7 @@
 <?php
-    require '../../model/model_area.php';
-    $MU = new Modelo_Area();//Instaciamos
-    $consulta = $MU->Listar_Area();
+    require '../../model/model_documentos.php';
+    $MU = new Modelo_Documentos();//Instaciamos
+    $consulta = $MU->Listar_Documentos();
     if($consulta){
         echo json_encode($consulta);
     }else{
