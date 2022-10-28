@@ -39,7 +39,7 @@ $('#tabla_genero').on('click','.editar',function(){
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
     document.getElementById('txt_genero_editar').value=data.nombre_genero;
-    document.getElementById('txt_idgenero').value=data.cod_genero;
+    
 
 })
 

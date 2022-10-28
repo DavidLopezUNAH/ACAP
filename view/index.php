@@ -161,9 +161,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','Pais/view_pais.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Pais
+              </p>
+            </a>
+          </li>     
+          <li class="nav-item">
           <?php 
           } 
           ?>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','estado/view_estado.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Estado 
+              </p>
+            </a>
+          </li>   
         
         
         </ul>

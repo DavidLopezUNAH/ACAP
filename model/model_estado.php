@@ -1,12 +1,12 @@
 <?php
     require_once  'model_conexion.php';
 
-    class Modelo_TipoSolicitud extends conexionBD{
+    class Modelo_Estado extends conexionBD{
     
 
-        public function Listar_TipoSolicitud(){
+        public function Listar_Estado(){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SEL_Tipo_de_solicitud";
+            $sql = "CALL SP_LISTAR_ESTADO";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query->execute();
@@ -18,12 +18,12 @@
             conexionBD::cerrar_conexion();
         }  
         
-        public function Registrar_TipoSolicitud($nombre_ts){
+        public function Registrar_Estado($nombre_estado){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL Ingresar_Tipo_de_solicitud(?)";
+            $sql = "CALL INS_ESTADO(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);            
-            $query -> bindParam(1,$nombre_ts);
+            $query -> bindParam(1,$nombre_estado);
             $query -> execute();
             if($row = $query->fetchColumn()){
                 return $row;
@@ -31,13 +31,13 @@
             conexionBD::cerrar_conexion();
         } 
 
-        public function Modificar_TipoSolicitud($cod_ts,$nombre_ts){
+        public function Modificar_Estado($cod_estado,$nombre_estado){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL ACTUALIZAR_TIPOSOLICITUD(?,?)";
+            $sql = "CALL SP_MODIFICAR_ESTADO(?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$cod_ts);
-            $query -> bindParam(2,$nombre_ts);
+            $query -> bindParam(1,$cod_estado);
+            $query -> bindParam(2,$nombre_estado);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
@@ -45,12 +45,12 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Eliminar_TipoSolicitud($cod_ts){
+        public function Eliminar_TipoSolicitud($cod_estado){
             $c = conexionBD::conexionPDO();                                                                                           
-            $sql = "CALL ELIMINAR_TIPOSOLICITUD(?)";
+            $sql = "CALL ELIMINAR_ESTADO(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$cod_ts);
+            $query -> bindParam(1,$cod_estado);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;
