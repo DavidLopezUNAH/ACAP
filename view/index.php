@@ -144,6 +144,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Area
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','carreras/view_carrera.php')" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Carreras Universitarias
+              </p>
+            </a>
           </li>         
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','estado_civil/view_estadoCivil.php')" class="nav-link">

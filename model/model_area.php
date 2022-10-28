@@ -33,17 +33,20 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Modificar_Area($area,$des,$dep){
+        public function Modificar_Area($id,$area,$des,$dep){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_MODIFICAR_AREA(?,?,?)";
+            $sql = "CALL SP_MODIFICAR_AREA(?,?,?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$area);
-            $query -> bindParam(2,$des);
-            $query -> bindParam(3,$dep);
+            $query -> bindParam(1,$id);
+            $query -> bindParam(2,$area);
+            $query -> bindParam(3,$des);
+            $query -> bindParam(4,$dep);
             $query->execute();
-            if($row = $query->fetchColumn()){
-                    return $row;
+            if($resul){
+                return 1;
+            }else{
+                return 0;
             }
             conexionBD::cerrar_conexion();
         }
