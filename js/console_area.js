@@ -17,7 +17,7 @@ function listar_area(){
             {"defaultContent":""},
             {"data":"nombre_area"},
             {"data":"descripcion"},
-            {"data":"cod_departamento",
+            {"data":"nombre_depto",
            
             },
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},

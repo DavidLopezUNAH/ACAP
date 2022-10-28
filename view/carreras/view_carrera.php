@@ -97,6 +97,42 @@
     </div>
   </div>
 </div>
+<!-- Modal de editar -->
+<div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">EDITAR DATOS DE CARRERA</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <label for="">AREA</label>
+                <input type="text" class="form-control" id="txt_area_editar">
+                <input type="text" id="txt_area" hidden>
+            </div>
+            <div class="col-12">
+                <label for="">DESCRIPCION</label>
+                <input type="text" class="form-control" id="txt_des_editar">
+                <input type="text" id="txt_des" hidden>
+            </div>
+            <div class="col-12">
+                <label for="">DEPARTAMENTO</label>
+                <select class="js-example-basic-single" id="select_dep_editar" style="width:100%">
+              </select>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick="Modificar_Area()">MODIFICAR</button>
+      </div>
+    </div>
+  </div>
+</div>   
      <!-- Modal -->
     <!-- /.content -->
     <script>

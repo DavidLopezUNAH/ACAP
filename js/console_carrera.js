@@ -16,10 +16,10 @@ function listar_carrera(){
         "columns":[
             {"defaultContent":""},
             {"data":"nombre_carrera"},
-            {"data":"cod_universidad"},
-            {"data":"cod_grado"},
-            {"data":"cod_tipo_acreditacion"},
-            {"data":"cod_persona"},
+            {"data":"nombre_universidad"},
+            {"data":"nombre_grado"},
+            {"data":"nombre_tipo_acreditacion"},
+            {"data":"primer_nombre"},
             {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
             
         ],
@@ -34,6 +34,18 @@ function listar_carrera(){
       });
     });
 }
+
+$('#tabla_carrerasuniversitarias').on('click','.editar',function(){
+	var data = tbl_area.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_area.row(this).child.isShown()){
+		var data = tbl_area.row(this).data();
+	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
+    $("#modal_editar").modal('show');
+    document.getElementById('txt_idearea').value=data.cod_area;
+    document.getElementById('txt_area_editar').value=data.nombre_area;
+    document.getElementById('txt_des_editar').value=data.descripcion;
+    $("#select_dep_editar").select2().val(data.cod_departamento).trigger('change.select2');
+})
 
 function AbrirRegistro(){
     $("#modal_registro").modal({backdrop:'static',keyboard:false})
@@ -69,6 +81,7 @@ function Registrar_carrera(){
                      document.getElementById('select_grado').value;
                      document.getElementById('select_tacre').value;
                      document.getElementById('select_perso').value;
+                     tbl_carrerasuniversitarias.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
             }else{
