@@ -50,7 +50,7 @@ function AbrirRegistro(){
 
 function Registrar_Universidad(){
     let universidad = document.getElementById('txt_universidad').value;
-    let nomb = document.getElementById('txt_pais').value;
+    let nomb = document.getElementById('select_pais').value;
   
     if(universidad.length==0 || nomb.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
@@ -60,8 +60,8 @@ function Registrar_Universidad(){
         "url":"../controller/universidad/controlador_registro_universidad.php",
         type:'POST',
         data:{
-            a:universidad,
-            nomb:nomb,
+            universidad:universidad,
+            nomb:nomb
             
         }
     }).done(function(resp){
@@ -69,7 +69,7 @@ function Registrar_Universidad(){
             if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Nuevo Universidad Registrada","success").then((value)=>{
                     document.getElementById('txt_universidad').value="";
-                    document.getElementById('txt_pais').value="";
+                    document.getElementById('select_pais').value="";
                     tbl_universidad.ajax.reload();
                     $("#modal_registro").modal('hide');
                 });
@@ -82,7 +82,7 @@ function Registrar_Universidad(){
     })
 }
 
-/*function Cargar_Select_pais(){
+function Cargar_Select_pais(){
     $.ajax({
         "url":"../controller/universidad/controlador_cargar_select_pais.php",
         type:'POST'
@@ -103,7 +103,7 @@ function Registrar_Universidad(){
 
         }
     })
-}*/
+}
 
 
 function Modificar_Universidad(){

@@ -6,7 +6,7 @@
 
         public function Listar_Universidad(){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SEL_Universidad";
+            $sql = "CALL SP_LISTAR_UNIVERSIDAD()";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query->execute();
@@ -34,7 +34,7 @@
         conexionBD::cerrar_conexion();
     }
 
-    /*public function Cargara_Select_pais(){
+    public function Cargara_Select_pais(){
         $c = conexionBD::conexionPDO();
         $sql = "CALL SP_CARGAR_SELECT_PAIS()";
         $arreglo = array();
@@ -46,16 +46,8 @@
         }
         return $arreglo;
         conexionBD::cerrar_conexion();
-    }*/
+    }
 
-
-
-
-
-
-
-
-    
     public function Modificar_Universidad($id,$uni){
         $c = conexionBD::conexionPDO();
         $sql = "CALL SP_MODIFICAR_UNIVERSIDAD(?,?)";
@@ -70,12 +62,5 @@
         conexionBD::cerrar_conexion();
     }
 
-
-
-
-
-
     }
-
-
 ?>

@@ -34,7 +34,6 @@
                           <th>Codigo</th>
                           <th>Nombre Genero</th>
                           <th>Acción para editar</th>
-                          <th>Acción para eliminar</th>
                       </tr>
                   </thead>
               </table>
