@@ -33,11 +33,10 @@
 
         public function Modificar_Genero($cod_genero,$nombre_genero){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL ACTUALIZAR_GENERO(?,?)";
+            $sql = "CALL SP_MODIFICAR_GENERO(?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$cod_genero);
-            $query -> bindParam(2,$nombre_genero);
+            $query -> bindParam(1,$nombre_genero);
             $query->execute();
             if($row = $query->fetchColumn()){
                     return $row;

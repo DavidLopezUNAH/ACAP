@@ -67,7 +67,7 @@ function Registrar_Genero(){
         "url":"../controller/genero/controlador_registro_genero.php",
         type:'POST',
         data:{
-            a:tbl_genero
+            tbl_genero : tbl_genero
         }
     }).done(function(resp){
         if(resp>0){
@@ -115,7 +115,7 @@ function Modificar_Genero(){
             return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
         }
     })
-  }
+}
  
     function Eliminar_Genero(){
         let cod_genero = document.getElementById('txt_idgenero').value;  
