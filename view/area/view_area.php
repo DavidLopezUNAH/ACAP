@@ -64,15 +64,16 @@
         <div class="row">
             <div class="col-12">
                 <label for="">AREA</label>
-                <input type="text" class="form-control" id="txt_area">
+                <input type="text" class="form-control" id="txt_area"onkeypress="return soloLetras(event)">
             </div>
             <div class="col-12">
                 <label for="">Descripcion</label>
-                <input type="text" class="form-control" id="txt_des">
+                <input type="text" class="form-control" id="txt_des"onkeypress="return soloLetras(event)">
             </div>
             <div class="col-6">
               <label for="">Departamento</label>
               <select class="js-example-basic-single" id="select_dep" style="width:100%">
+              <option value="opcion">--Seleciones una opcion--</option>
               </select>
             </div>
         </div>

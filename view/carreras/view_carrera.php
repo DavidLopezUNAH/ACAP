@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="">CARRERA</label>
-                <input type="text" class="form-control" id="txt_carrera">
+                <input type="text" class="form-control" id="txt_carrera"onkeypress="return soloLetras(event)">
             </div>
             <div class="col-6">
               <label for="">Universidad</label>

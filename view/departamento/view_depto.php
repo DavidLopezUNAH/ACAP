@@ -64,11 +64,11 @@
            
             <div class="col-12">
                 <label for="">DEPARTAMENTO</label>
-                <input type="text" class="form-control" id="txt_depto">
+                <input type="text" class="form-control" id="txt_depto" onkeypress="return soloLetras(event)">
             </div>
             <div class="col-12">
                 <label for="">Descripcion</label>
-                <input type="text" class="form-control" id="txt_des">
+                <input type="text" class="form-control" id="txt_des" onkeypress="return soloLetras(event)">
             </div>
           
         </div>

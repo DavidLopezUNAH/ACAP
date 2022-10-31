@@ -89,7 +89,7 @@ function Registrar_Genero(){
 function Modificar_Genero(){
     let id  = document.getElementById('txt_idgenero').value;
     let genero = document.getElementById('txt_genero_editar').value;
-    if(genero.length==0 || id.length==0){
+    if( id.length==0 || genero.length==0 ){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -98,7 +98,7 @@ function Modificar_Genero(){
         type:'POST',
         data:{
             id:id,
-           gene:genero
+           gene:gene
  
         }
     }).done(function(resp){
