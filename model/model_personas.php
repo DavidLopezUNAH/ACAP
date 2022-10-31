@@ -40,22 +40,22 @@
             conexionBD::cerrar_conexion();
         } 
 
-        public function Modificar_Persona($cod_persona, $p_nombre, $s_nombre, $p_apellido, $s_apellido, $fech, $grado, $estadocivil, $t_persona, $npais, $ngenero){
+        public function Modificar_Persona($id, $p_nombre, $s_nombre, $p_apellido, $s_apellido, $fech, $grado, $e_civil, $t_persona, $pais, $genero){
             $c = conexionBD::conexionPDO();
             $sql = "CALL MODIFICAR_PERSONAS(?,?,?,?,?,?,?,?,?,?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql); 
-            $query -> bindParam(1,$cod_persona);           
+            $query -> bindParam(1,$id);           
             $query -> bindParam(2,$p_nombre);
             $query -> bindParam(3,$s_nombre);
             $query -> bindParam(4,$p_apellido);
             $query -> bindParam(5,$s_apellido);
             $query -> bindParam(6,$fech);
             $query -> bindParam(7,$grado);
-            $query -> bindParam(8,$estadocivil);
+            $query -> bindParam(8,$_civil);
             $query -> bindParam(9,$t_persona);
-            $query -> bindParam(10,$npais);
-            $query -> bindParam(11,$ngenero);
+            $query -> bindParam(10,$pais);
+            $query -> bindParam(11,$genero);
             $query -> execute();
             $resul=$query->execute();
             if($resul){
@@ -122,6 +122,18 @@
             conexionBD::cerrar_conexion();
         }
 
+        public function Eliminar_Persona($id){
+            $c = conexionBD::conexionPDO();                                                                                           
+            $sql = "CALL ELIMINAR_PERSONA(?)";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query -> bindParam(1,$id);
+            $query->execute();
+            if($row = $query->fetchColumn()){
+                    return $row;
+            }
+            conexionBD::cerrar_conexion();
+        }
         
     }
 

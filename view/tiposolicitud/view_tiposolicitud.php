@@ -26,7 +26,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>Listado de Tipos de Solicitud</b></h3>
-                <button class="btn btn-danger btn-sm float-right" onclick="AbrirRegistro()"> <i class="fas fa-plus"> </i> Agregar un Nuevo Tipo de Solicitud</button>
+                <button class="btn btn-success btn-sm float-right" onclick="AbrirRegistro()"> <i class="fas fa-plus"> </i> Agregar un Nuevo Tipo de Solicitud</button>
               </div>
               <div class="card-body">
               <table id="tabla_tiposolicitud" class="display" style="width:100%">

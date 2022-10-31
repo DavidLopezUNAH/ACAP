@@ -16,7 +16,7 @@ function listar_tiposolicitud(){
         "columns":[
             {"defaultContent":""},
             {"data":"nombre_tipo_solicitud"},            
-            {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
+            {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp&nbsp;<button class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>"},
         ],
   
         "language":idioma_espanol,
@@ -84,9 +84,9 @@ function Registrar_TipoSolicitud(){
 }
 
 function Modificar_TipoSolicitud(){
-    let cod_ts = document.getElementById('txt_idtiposolicitud').value;
+    let id = document.getElementById('txt_idtiposolicitud').value;
     let nombre_ts = document.getElementById('txt_tiposolicitud_editar').value;
-    if(nombre_ts.length==0 || cod_ts.length==0){
+    if(nombre_ts.length==0 || id.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -94,7 +94,7 @@ function Modificar_TipoSolicitud(){
         "url":"../controller/tiposolicitud/controlador_modificar_tiposolicitud.php",
         type:'POST',
         data:{
-            cod_ts:cod_ts,
+            id:id,
             nombre_ts:nombre_ts
         }
     }).done(function(resp){
@@ -123,17 +123,9 @@ function Eliminar_TipoSolicitud(){
             cod_ts:cod_ts,
         }
     }).done(function(resp){
-        if(resp>0){
-            if(resp==1){
-                Swal.fire("Mensaje de Confirmacion","Tipo de Solicitud Eliminada","success").then((value)=>{
-                    tbl_tiposolicitudes.ajax.reload();
-                    $("#modal_eliminar").modal('hide');
-                });
-            }else{
-                Swal.fire("Mensaje de Advertencia","El tipo de solicitud ingresada ya se encuentra en la base de datos","warning");
-            }
-        }else{
-            return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
-        }
+        Swal.fire("Mensaje de Confirmacion","Tipo de Solicitud Eliminada","success").then((value)=>{
+            tbl_tiposolicitudes.ajax.reload();
+            $("#modal_eliminar").modal('hide');
+        });        
     })
 }
