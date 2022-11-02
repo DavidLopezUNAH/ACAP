@@ -136,6 +136,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                Genero
               </p>
             </a>
+          </li>        
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','documentos/view_documentos.php')" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+               Documentos
+              </p>
+            </a>
           </li>         
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','area/view_area.php')" class="nav-link">

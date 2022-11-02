@@ -52,7 +52,7 @@
 
         public function Cargara_Select_tipo_documento(){
             $c = conexionBD::conexionPDO();
-            $sql = "CALL SP_CARGAR_SELECT_DEPARTAMENTO()";
+            $sql = "SP_CARGAR_SELECT_tipo_documento  ";
             $arreglo = array();
             $query  = $c->prepare($sql);
             $query->execute();
