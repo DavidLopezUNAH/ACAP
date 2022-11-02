@@ -26,7 +26,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"><b>Listado de Personas</b></h3>
-                <button class="btn btn-danger btn-sm float-right" onclick="AbrirRegistro()"> <i class="fas fa-plus"> </i> Agregar una Nueva Persona</button>
+                <button class="btn btn-success btn-sm float-right" onclick="AbrirRegistro()"> <i class="fas fa-plus"> </i> Agregar una Nueva Persona</button>
               </div>
               <div class="card-body">
               <table id="tabla_personas" class="display" style="width:100%">
@@ -127,14 +127,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">EDITAR DATOS DE PERSONAS</h5>
+        <h5 class="modal-title" id="exampleModalLabel">EDITAR DATOS DE LAS PERSONAS</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">
-        <input type="text" id="txt_idpersona" hidden>
+        <div class="row">   
+        <div class="col-12">
+            <label for="">Persona</label>
+            <input type="text" class="form-control" id="txt_idpersona" hidden>            
+          </div>
           <div class="col-6">
             <label for="">Primer Nombre:</label>
             <input type="text" class="form-control" id="txt_pnombre_editar">            
@@ -142,7 +145,6 @@
           <div class="col-6">
             <label for="">Segundo Nombre:</label>
             <input type="text" class="form-control" id="txt_snombre_editar">
-            <input type="text" id="txt_idpersona" hidden>
           </div>
           <div class="col-6">
             <label for="">Primer Apellido:</label>
@@ -155,7 +157,6 @@
           <div class="col-6">
             <label for="">Fecha de Nacimiento:</label>
             <input type="date" class="form-control" id="txt_fechnac_editar">
-            <input type="text" id="txt_idpersona" hidden>
           </div>
           <div class="col-6">
             <label for="">Grado Academico:</label>
@@ -191,6 +192,29 @@
     </div>
   </div>
 </div> 
+<div class="modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ELIMINAR LA PERSONA</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <label for="">¿Desea eliminar a la persona seleccionado?</label>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-success" onclick="Eliminar_Persona()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>  
    <script>
       $(document).ready(function() {
         listar_personas();

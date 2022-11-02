@@ -39,7 +39,7 @@ $('#tabla_genero').on('click','.editar',function(){
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
     document.getElementById('txt_genero_editar').value=data.nombre_genero;
-    
+    document.getElementById('txt_idgenero').value=data.cod_genero;
 
 })
 
@@ -87,8 +87,8 @@ function Registrar_Genero(){
 }
 
 function Modificar_Genero(){
-    let id  = document.getElementById('txt_idgenero').value;
-    let genero = document.getElementById('txt_genero_editar').value;
+    let id   = document.getElementById('txt_idgenero').value;
+    let genero= document.getElementById('txt_genero_editar').value;
     if(genero.length==0 || id.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
@@ -98,8 +98,8 @@ function Modificar_Genero(){
         type:'POST',
         data:{
             id:id,
-           gene:genero
- 
+            gene:genero
+            
         }
     }).done(function(resp){
         if(resp>0){
@@ -116,6 +116,7 @@ function Modificar_Genero(){
         }
     })
 }
+
  
     function Eliminar_Genero(){
         let cod_genero = document.getElementById('txt_idgenero').value;  

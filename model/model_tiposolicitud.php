@@ -31,12 +31,12 @@
             conexionBD::cerrar_conexion();
         } 
 
-        public function Modificar_TipoSolicitud($cod_ts,$nombre_ts){
+        public function Modificar_TipoSolicitud($id,$nombre_ts){
             $c = conexionBD::conexionPDO();
             $sql = "CALL ACTUALIZAR_TIPOSOLICITUD(?,?)";
             $arreglo = array();
             $query  = $c->prepare($sql);
-            $query -> bindParam(1,$cod_ts);
+            $query -> bindParam(1,$id);
             $query -> bindParam(2,$nombre_ts);
             $query->execute();
             if($row = $query->fetchColumn()){

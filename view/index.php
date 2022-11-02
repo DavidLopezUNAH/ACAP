@@ -15,7 +15,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Starter</title>
+  <title>ACAP</title>
+  <link rel="shortcut icon" href="../plantilla/dist/img/ACAP.png" />
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -123,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           /*
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','personas/view_personas.php')" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 Personas
               </p>
@@ -131,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>          
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','genero/view_genero.php')" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                Genero
               </p>
@@ -163,7 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>         
           <li class="nav-item">
             <a onclick="cargar_contenido('contenido_principal','estado_civil/view_estadoCivil.php')" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Estado Civil
               </p>
@@ -201,7 +202,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a onclick="cargar_contenido('contenido_principal','universidad/view_universidad.php')" class="nav-link">
               <i class="nav-icon fas fa-file-signature"></i>
               <p>
-                Univerisidades
+                Universidades
               </p>
             </a>
           </li>
