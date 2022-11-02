@@ -17,7 +17,7 @@ function listar_universidad(){
             {"defaultContent":""},
             {"data":"nombre_universidad"},
             {"data":"nombre_pais"},
-            {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},   
+            {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp&nbsp;<button class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>"},   
         ],
   
         "language":idioma_espanol,
@@ -41,6 +41,15 @@ $('#tabla_universidad').on('click','.editar',function(){
     document.getElementById('txt_iduniversidad').value=data.cod_universidad;
     document.getElementById('select_pais_editar').value=data.nombre_pais;
     
+})
+
+$('#tabla_universidad').on('click','.eliminar',function(){
+	var data = tbl_universidad.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_universidad.row(this).child.isShown()){
+		var data = tbl_universidad.row(this).data();
+	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
+    $("#modal_eliminar").modal('show');
+    document.getElementById('txt_iduniversidad').value=data.cod_universidad;
 })
 
 function AbrirRegistro(){
@@ -134,6 +143,23 @@ function Modificar_Universidad(){
         }else{
             return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
         }
+    })
+}
+
+function Eliminar_Universidad(){
+    let id = document.getElementById('txt_iduniversidad').value;  
+
+    $.ajax({
+        "url":"../controller/universidad/controlador_eliminar_universidad.php",
+        type:'POST',
+        data:{
+        id:id,
+        }
+    }).done(function(resp){
+        Swal.fire("Mensaje de Confirmacion","Universidad Eliminada","success").then((value)=>{
+            tbl_universidad.ajax.reload();
+            $("#modal_eliminar").modal('hide');
+        });        
     })
 }
 
