@@ -42,7 +42,7 @@
             $query -> bindParam(2,$area);
             $query -> bindParam(3,$des);
             $query -> bindParam(4,$dep);
-            $query->execute();
+            $resul = $query->execute();
             if($resul){
                 return 1;
             }else{

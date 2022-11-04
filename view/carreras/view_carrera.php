@@ -98,7 +98,7 @@
   </div>
 </div>
 <!-- Modal de editar -->
-<!--div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_editar" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -110,29 +110,39 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-12">
-                <label for="">AREA</label>
-                <input type="text" class="form-control" id="txt_area_editar">
-                <input type="text" id="txt_area" hidden>
+                <input type="text" id="txt_idcarrera" hidden>
+                <label for="">CARRERA</label>
+                <input type="text" class="form-control" id="txt_carrera_editar"onkeypress="return soloLetras(event)">
             </div>
-            <div class="col-12">
-                <label for="">DESCRIPCION</label>
-                <input type="text" class="form-control" id="txt_des_editar">
-                <input type="text" id="txt_des" hidden>
+            <div class="col-6">
+              <label for="">Universidad</label>
+              <select class="js-example-basic-single" id="select_uni_editar" style="width:100%">
+              </select>
             </div>
-            <div class="col-12">
-                <label for="">DEPARTAMENTO</label>
-                <select class="js-example-basic-single" id="select_dep_editar" style="width:100%">
+            <div class="col-6">
+              <label for="">Grado</label>
+              <select class="js-example-basic-single" id="select_grado_editar" style="width:100%">
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="">Tipo de acreditacion</label>
+              <select class="js-example-basic-single" id="select_tacre_editar" style="width:100%">
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="">Persona</label>
+              <select class="js-example-basic-single" id="select_perso_editar" style="width:100%">
               </select>
             </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" onclick="Modificar_Area()">MODIFICAR</button>
+        <button type="button" class="btn btn-success" onclick="Modificar_Carrera()">MODIFICAR</button>
       </div>
     </div>
   </div>
-</|div-->   
+</div-->   
      <!-- Modal -->
     <!-- /.content -->
     <script>
