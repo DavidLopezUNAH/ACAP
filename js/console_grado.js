@@ -16,7 +16,7 @@ function listar_grado(){
         "columns":[
             {"defaultContent":""},
             {"data":"nombre_grado"},
-            {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
+            {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp&nbsp;<button class='eliminar btn btn-danger'><i class='fa fa-trash'></i></button>"},
             
         ],
   
@@ -40,6 +40,15 @@ $('#tabla_grado').on('click','.editar',function(){
     document.getElementById('txt_grado_editar').value=data.nombre_grado;
     document.getElementById('txt_idgrado').value=data.cod_grado;
 
+})
+
+$('#tabla_grado').on('click','.eliminar',function(){
+	var data = tbl_grados.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_grados.row(this).child.isShown()){
+		var data = tbl_grados.row(this).data();
+	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
+    $("#modal_eliminar").modal('show');
+    document.getElementById('txt_idgrado').value=data.cod_grado;
 })
 
 function AbrirRegistro(){
@@ -104,6 +113,23 @@ function Modificar_Grado(){
         }else{
             return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
         }
+    })
+}
+
+function Eliminar_Grado(){
+    let grado = document.getElementById('txt_idgrado').value;  
+
+    $.ajax({
+        "url":"../controller/grado/controlador_eliminar_grado.php",
+        type:'POST',
+        data:{
+            gardo:grado,
+        }
+    }).done(function(resp){
+        Swal.fire("Mensaje de Confirmacion","Grado academico Eliminado","success").then((value)=>{
+            tbl_grados.ajax.reload();
+            $("#modal_eliminar").modal('hide');
+        });        
     })
 }
 
