@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="">Ingrese el Nombre de la universidad:</label>
-                <input type="text" class="form-control" id="txt_universidad">
+                <input type="text" class="form-control" id="txt_universidad" onkeypress="return soloLetras(event)">     
             </div>
             <div class="col-6">
               <label for="">País</label>

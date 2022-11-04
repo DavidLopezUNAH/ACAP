@@ -118,12 +118,11 @@ function Modificar_Grado(){
 
 function Eliminar_Grado(){
     let grado = document.getElementById('txt_idgrado').value;  
-
     $.ajax({
         "url":"../controller/grado/controlador_eliminar_grado.php",
         type:'POST',
         data:{
-            gardo:grado,
+            grado:grado,
         }
     }).done(function(resp){
         Swal.fire("Mensaje de Confirmacion","Grado academico Eliminado","success").then((value)=>{
