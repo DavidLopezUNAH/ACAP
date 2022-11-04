@@ -176,7 +176,7 @@ function Modificar_Persona(){
 }
 
 
-function Cargar_Select_ecivil(){
+function Cargar_Select_EstadoCivil(){
     $.ajax({
         "url":"../controller/personas/controlador_cargar_estadocivil.php",
         type:'POST'
@@ -198,7 +198,7 @@ function Cargar_Select_ecivil(){
     })
 }
 
-function Cargar_Select_tipopersona(){
+function Cargar_Select_TipoPersona(){
     $.ajax({
         "url":"../controller/personas/controlador_cargar_tipopersona.php",
         type:'POST'
@@ -220,7 +220,7 @@ function Cargar_Select_tipopersona(){
     })
 }
 
-function Cargar_Select_pais(){
+function Cargar_Select_Pais(){
     $.ajax({
         "url":"../controller/personas/controlador_cargar_pais.php",
         type:'POST'
@@ -242,7 +242,7 @@ function Cargar_Select_pais(){
     })
 }
 
-function Cargar_Select_genero(){
+function Cargar_Select_Genero(){
     $.ajax({
         "url":"../controller/personas/controlador_cargar_genero.php",
         type:'POST'

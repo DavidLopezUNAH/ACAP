@@ -62,7 +62,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="">Ingrese el Nombre del Tipo de Solicitud:</label>
-                <input type="text" class="form-control" id="txt_tiposolicitud">
+                <input type="text" class="form-control" id="txt_tiposolicitud" onkeypress="return soloLetras(event)">
             </div>
         </div>
       </div>
@@ -87,7 +87,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="">Nombre del Tipo de Solicitud:</label>
-                <input type="text" class="form-control" id="txt_tiposolicitud_editar">
+                <input type="text" class="form-control" id="txt_tiposolicitud_editar" onkeypress="return soloNumeros(event)">
                 <input type="text" id="txt_idtiposolicitud" hidden>
             </div>
         </div>
