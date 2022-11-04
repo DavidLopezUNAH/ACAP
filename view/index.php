@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <?php if($_SESSION['S_ROL']=='Administrador') {?>
           <li class="nav-item">
           <a href="#" class="nav-link active">
-          <i class="nav-icon fa-sharp fa-solid fa-wrench-simple"></i>
+          <i class="nav-icon fa-solid fa-gear"></i>
           <p>
           Mantenimiento
           <i class="right fas fa-angle-left"></i>
@@ -135,6 +135,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-users"></i>
               <p>
                Genero
+              </p>
+            </a>
+          </li>        
+          <li class="nav-item">
+            <a onclick="cargar_contenido('contenido_principal','documentos/view_documentos.php')" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+               Documentos
               </p>
             </a>
           </li>         
@@ -352,6 +360,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 			}
    }
+   
    function soloNumeros(e){
       tecla = (document.all) ? e.keyCode : e.which;
       if (tecla==8){
@@ -362,8 +371,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       tecla_final = String.fromCharCode(tecla);
       return patron.test(tecla_final);
   }
+  
   function soloLetras(e){
-      key = e.keyCode || e.which;
+      key = e.keyCode || e.which; 
       tecla = String.fromCharCode(key).toLowerCase();
       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
       especiales = "8-37-39-46";
@@ -375,6 +385,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           }
       }
       if(letras.indexOf(tecla)==-1 && !tecla_especial){
+          Swal.fire("Mensaje de Advertencia","Ingrese solamente Letras","warning");
           return false;
       }
   }

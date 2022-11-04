@@ -45,6 +45,19 @@
             conexionBD::cerrar_conexion();
         }
 
+        public function Eliminar_Grado($grado){
+            $c = conexionBD::conexionPDO();                                                                                           
+            $sql = "CALL SP_ELIMINAR_GRADO(?)";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query -> bindParam(1,$grado);
+            $query->execute();
+            if($row = $query->fetchColumn()){
+                    return $row;
+            }
+            conexionBD::cerrar_conexion();
+        }
+
 
 
     }

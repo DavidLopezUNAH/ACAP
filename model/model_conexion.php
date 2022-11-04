@@ -7,7 +7,7 @@
             $host       = "localhost";
             $usuario    = "root";
             $contrasena = "";
-            $bdName     = "acapdb";
+            $bdName     = "sistema_tramite";
             try {
                 $pdo = new PDO("mysql:host=$host;dbname=$bdName",$usuario,$contrasena);
                 $pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

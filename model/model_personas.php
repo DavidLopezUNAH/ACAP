@@ -66,7 +66,7 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Cargara_Select_ecivil(){
+        public function Cargara_Select_EstadoCivil(){
             $c = conexionBD::conexionPDO();
             $sql = "CALL SEL_Estado_civil()";
             $arreglo = array();
@@ -80,7 +80,7 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Cargara_Select_tipopersona(){
+        public function Cargara_Select_TipoPersona(){
             $c = conexionBD::conexionPDO();
             $sql = "CALL SEL_tipo_personas()";
             $arreglo = array();
@@ -94,7 +94,7 @@
             conexionBD::cerrar_conexion();
         }
 
-        public function Cargara_Select_pais(){
+        public function Cargara_Select_Pais(){
             $c = conexionBD::conexionPDO();
             $sql = "CALL SEL_pais()";
             $arreglo = array();

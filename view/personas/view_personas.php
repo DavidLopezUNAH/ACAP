@@ -71,19 +71,19 @@
         <div class="row">
           <div class="col-6">
             <label for="">Primer Nombre:</label>
-            <input type="text" class="form-control" id="txt_pnombre">
+            <input type="text" class="form-control" id="txt_pnombre" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
             <label for="">Segundo Nombre:</label>
-            <input type="text" class="form-control" id="txt_snombre">
+            <input type="text" class="form-control" id="txt_snombre" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
             <label for="">Primer Apellido:</label>
-            <input type="text" class="form-control" id="txt_papellido">
+            <input type="text" class="form-control" id="txt_papellido" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
             <label for="">Segundo Apellido:</label>
-            <input type="text" class="form-control" id="txt_sapellido">
+            <input type="text" class="form-control" id="txt_sapellido" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
             <label for="">Fecha de Nacimiento:</label>
@@ -91,7 +91,7 @@
           </div>
           <div class="col-6">
             <label for="">Grado Academico:</label>
-            <input type="text" class="form-control" id="txt_grado">
+            <input type="text" class="form-control" id="txt_grado" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
               <label for="">Estado Civil:</label>
@@ -140,19 +140,19 @@
           </div>
           <div class="col-6">
             <label for="">Primer Nombre:</label>
-            <input type="text" class="form-control" id="txt_pnombre_editar">            
+            <input type="text" class="form-control" id="txt_pnombre_editar" onkeypress="return soloLetras(event)">            
           </div>
           <div class="col-6">
             <label for="">Segundo Nombre:</label>
-            <input type="text" class="form-control" id="txt_snombre_editar">
+            <input type="text" class="form-control" id="txt_snombre_editar" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
             <label for="">Primer Apellido:</label>
-            <input type="text" class="form-control" id="txt_papellido_editar">
+            <input type="text" class="form-control" id="txt_papellido_editar" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
             <label for="">Segundo Apellido:</label>
-            <input type="text" class="form-control" id="txt_sapellido_editar">
+            <input type="text" class="form-control" id="txt_sapellido_editar" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
             <label for="">Fecha de Nacimiento:</label>
@@ -160,7 +160,7 @@
           </div>
           <div class="col-6">
             <label for="">Grado Academico:</label>
-            <input type="text" class="form-control" id="txt_grado_editar">
+            <input type="text" class="form-control" id="txt_grado_editar" onkeypress="return soloLetras(event)">
           </div>
           <div class="col-6">
               <label for="">Estado Civil:</label>
