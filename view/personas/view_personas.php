@@ -219,9 +219,9 @@
       $(document).ready(function() {
         listar_personas();
         $('.js-example-basic-single').select2();
-        Cargar_Select_ecivil();
-        Cargar_Select_tipopersona();
-        Cargar_Select_pais();
-        Cargar_Select_genero();
+        Cargar_Select_EstadoCivil();
+        Cargar_Select_TipoPersona();
+        Cargar_Select_Pais();
+        Cargar_Select_Genero();
       } );
     </script>
