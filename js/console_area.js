@@ -41,7 +41,7 @@ $('#tabla_area').on('click','.editar',function(){
 		var data = tbl_area.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
-    document.getElementById('txt_idearea').value=data.cod_area;
+    document.getElementById('txt_idarea').value=data.cod_area;
     document.getElementById('txt_area_editar').value=data.nombre_area;
     document.getElementById('txt_des_editar').value=data.descripcion;
     $("#select_dep_editar").select2().val(data.cod_departamento).trigger('change.select2');
@@ -89,8 +89,8 @@ function Registrar_Area(){
 }
 
 function Modificar_Area(){
-    let id   = document.getElementById('txt_idearea').value;
-    let area   = document.getElementById('txt_area_editar').value;
+    let id = document.getElementById('txt_idarea').value;
+    let area = document.getElementById('txt_area_editar').value;
     let des = document.getElementById('txt_des_editar').value;
     let dep = document.getElementById('select_dep_editar').value;
     if(id.length==0 ||area.length==0 || des.length==0 || dep.length==0){
@@ -108,16 +108,12 @@ function Modificar_Area(){
         }
     }).done(function(resp){
         if(resp>0){
-            if(resp==1){
                 Swal.fire("Mensaje de Confirmacion","Datos Actualizados","success").then((value)=>{
                     tbl_area.ajax.reload();
                     $("#modal_editar").modal('hide');
                 });
-            }else{
-                Swal.fire("Mensaje de Advertencia","El area ingresada ya se encuentra en la base de datos","warning");
-            }
         }else{
-            return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
+            return Swal.fire("Mensaje de Error","No se completo la Actualizacion","error");            
         }
     })
 }

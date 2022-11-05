@@ -36,22 +36,24 @@ function listar_carrera(){
 }
 
 $('#tabla_carrerasuniversitarias').on('click','.editar',function(){
-	var data = tbl_area.row($(this).parents('tr')).data();//En tamaño escritorio
-	if(tbl_area.row(this).child.isShown()){
-		var data = tbl_area.row(this).data();
+	var data = tbl_carrerasuniversitarias.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_carrerasuniversitarias.row(this).child.isShown()){
+		var data = tbl_carrerasuniversitarias.row(this).data();
 	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
     $("#modal_editar").modal('show');
-    document.getElementById('txt_idearea').value=data.cod_area;
-    document.getElementById('txt_area_editar').value=data.nombre_area;
-    document.getElementById('txt_des_editar').value=data.descripcion;
-    $("#select_dep_editar").select2().val(data.cod_departamento).trigger('change.select2');
+    document.getElementById('txt_idcarrera').value=data.cod_carrera;
+    document.getElementById('txt_carrera_editar').value=data.nombre_carrera;
+    $("#select_uni_editar").select2().val(data.cod_universidadv).trigger('change.select2');
+    $("#select_grado_editar").select2().val(data.cod_grado).trigger('change.select2');
+    $("#select_tacre_editar").select2().val(data.cod_tipo_acreditacion).trigger('change.select2');
+    $("#select_perso_editar").select2().val(data.cod_persona).trigger('change.select2');
 })
 
 function AbrirRegistro(){
     $("#modal_registro").modal({backdrop:'static',keyboard:false})
     $("#modal_registro").modal('show');
+    
 }
-
 function Registrar_carrera(){
     let carrera = document.getElementById('txt_carrera').value;
     let uni = document.getElementById('select_uni').value;
@@ -93,6 +95,44 @@ function Registrar_carrera(){
     })
 }
 
+
+
+
+
+function Modificar_Carrera(){
+    let id  = document.getElementById('txt_idcarrera').value;
+    let carrera  = document.getElementById('txt_carrera_editar').value;
+    let uni = document.getElementById('select_uni_editar').value;
+    let gra = document.getElementById('select_grado_editar').value;
+    let tacre = document.getElementById('select_tacre_editar').value;
+    let perso = document.getElementById('select_perso_editar').value;
+    if(id.length==0 || carrera.length==0 || uni.length==0 || gra.length==0 || tacre.length==0 || perso.length==0 ){
+        return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
+    }
+
+    $.ajax({
+        "url":"../controller/carreras/controlador_modificar_carrera.php",
+        type:'POST',
+        data:{
+            id:id,
+            carrera:carrera,
+            uni:uni,
+            gra:gra,
+            tacre:tacre,
+            perso:perso
+        }
+    }).done(function(resp){
+        if(resp>0){
+                Swal.fire("Mensaje de Confirmacion","Datos de la carrera actualizados","success").then((value)=>{
+                    tbl_carrerasuniversitarias.ajax.reload();
+                    $("#modal_editar").modal('hide');
+                });
+        }else{
+            return Swal.fire("Mensaje de Error","No se completo la actualizacion","error");            
+        }
+    })
+}
+
 function Cargar_Select_uni(){
     $.ajax({
         "url":"../controller/carreras/controlador_cargar_select_uni.php",
@@ -105,12 +145,12 @@ function Cargar_Select_uni(){
                 cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
             }
             document.getElementById('select_uni').innerHTML=cadena;
-            document.getElementById('select_dep_editar').innerHTML=cadena;
+            document.getElementById('select_uni_editar').innerHTML=cadena;
 
         }else{
             cadena+="<option value=''>No hay universidad disponible</option>";
             document.getElementById('select_uni').innerHTML=cadena;
-            document.getElementById('select_dep_editar').innerHTML=cadena;
+            document.getElementById('select_uni_editar').innerHTML=cadena;
 
         }
     })
@@ -128,12 +168,12 @@ function Cargar_Select_gra(){
                 cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
             }
             document.getElementById('select_grado').innerHTML=cadena;
-            document.getElementById('select_dep_editar').innerHTML=cadena;
+            document.getElementById('select_grado_editar').innerHTML=cadena;
 
         }else{
             cadena+="<option value=''>No hay grado disponible</option>";
             document.getElementById('select_grado').innerHTML=cadena;
-            document.getElementById('select_dep_editar').innerHTML=cadena;
+            document.getElementById('select_grado_editar').innerHTML=cadena;
 
         }
     })
@@ -151,12 +191,12 @@ function Cargar_Select_tacre(){
                 cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
             }
             document.getElementById('select_tacre').innerHTML=cadena;
-            document.getElementById('select_dep_editar').innerHTML=cadena;
+            document.getElementById('select_tacre_editar').innerHTML=cadena;
 
         }else{
             cadena+="<option value=''>No hay grado disponible</option>";
             document.getElementById('select_tacre').innerHTML=cadena;
-            document.getElementById('select_dep_editar').innerHTML=cadena;
+            document.getElementById('select_tacre_editar').innerHTML=cadena;
 
         }
     })
@@ -174,12 +214,12 @@ function Cargar_Select_perso(){
                 cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
             }
             document.getElementById('select_perso').innerHTML=cadena;
-            document.getElementById('select_dep_editar').innerHTML=cadena;
+            document.getElementById('select_perso_editar').innerHTML=cadena;
 
         }else{
             cadena+="<option value=''>No hay grado disponible</option>";
             document.getElementById('select_perso').innerHTML=cadena;
-            document.getElementById('select_dep_editar').innerHTML=cadena;
+            document.getElementById('select_perso_editar').innerHTML=cadena;
 
         }
     })

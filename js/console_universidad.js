@@ -147,13 +147,12 @@ function Modificar_Universidad(){
 }
 
 function Eliminar_Universidad(){
-    let id = document.getElementById('txt_iduniversidad').value;  
-
+    let uni = document.getElementById('txt_iduniversidad').value;  
     $.ajax({
         "url":"../controller/universidad/controlador_eliminar_universidad.php",
         type:'POST',
         data:{
-        id:id,
+            uni:uni,
         }
     }).done(function(resp){
         Swal.fire("Mensaje de Confirmacion","Universidad Eliminada","success").then((value)=>{
@@ -162,4 +161,3 @@ function Eliminar_Universidad(){
         });        
     })
 }
-

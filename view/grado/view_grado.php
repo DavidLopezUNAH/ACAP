@@ -62,8 +62,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="">Ingrese el Grado Academico:</label>
-                <input type="text" class="form-control" id="txt_grado">
-            </div>
+                <input type="text" class="form-control" id="txt_grado" onkeypress="return soloLetras(event)">              </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -87,7 +86,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="">Nombre del Grado Academico:</label>
-                <input type="text" class="form-control" id="txt_grado_editar">
+                <input type="text" class="form-control" id="txt_grado_editar" onkeypress="return soloLetras(event)">              </div>
                 <input type="text" id="txt_idgrado" hidden>        
             </div>
         </div>
@@ -129,6 +128,4 @@
       $('#modal_registro').on('shown.bs.modal', function () {
         $('#txt_grado').trigger('focus')
        })
-      
-     
     </script>

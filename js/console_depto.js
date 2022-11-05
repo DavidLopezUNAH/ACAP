@@ -32,17 +32,6 @@ function Listar_depto(){
     });
 }
 
-$('#tabla_depto').on('click','.editar',function(){
-	var data = tbl_departamento.row($(this).parents('tr')).data();//En tamaño escritorio
-	if(tbl_departamento.row(this).child.isShown()){
-		var data = tbl_departamento.row(this).data();
-	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
-    $("#modal_editar").modal('show');
-    document.getElementById('txt_depto_editar').value=data.nombre_depto;
-    document.getElementById('txt_des_editar').value=data.descripcion;
-    
-})
-
 
 function AbrirRegistro(){
     $("#modal_registro").modal({backdrop:'static',keyboard:false})

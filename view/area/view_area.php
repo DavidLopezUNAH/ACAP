@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="">AREA</label>
-                <input type="text" class="form-control" id="txt_area"onkeypress="return soloLetras(event)">
+                <input type="text" class="form-control" id="txt_area" onkeypress="return soloLetras(event)">
             </div>
             <div class="col-12">
                 <label for="">Descripcion</label>
@@ -73,7 +73,6 @@
             <div class="col-6">
               <label for="">Departamento</label>
               <select class="js-example-basic-single" id="select_dep" style="width:100%">
-              <option value="opcion">--Seleciones una opcion--</option>
               </select>
             </div>
         </div>
@@ -98,16 +97,15 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-12">
+                <input type="text" id="txt_idarea" hidden>
                 <label for="">AREA</label>
                 <input type="text" class="form-control" id="txt_area_editar">
-                <input type="text" id="txt_area" hidden>
             </div>
             <div class="col-12">
                 <label for="">DESCRIPCION</label>
                 <input type="text" class="form-control" id="txt_des_editar">
-                <input type="text" id="txt_des" hidden>
             </div>
-            <div class="col-12">
+            <div class="col-6">
                 <label for="">DEPARTAMENTO</label>
                 <select class="js-example-basic-single" id="select_dep_editar" style="width:100%">
               </select>

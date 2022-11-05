@@ -35,6 +35,26 @@
             conexionBD::cerrar_conexion();
         }
 
+        public function Modificar_Carrera($id,$carrera,$uni,$gra,$tacre,$perso){
+            $c = conexionBD::conexionPDO();
+            $sql = "CALL SP_MODIFICAR_CARRERA(?,?,?,?,?,?)";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query -> bindParam(1,$id);
+            $query -> bindParam(2,$carrera);
+            $query -> bindParam(3,$uni);
+            $query -> bindParam(4,$gra);
+            $query -> bindParam(5,$tacre);
+            $query -> bindParam(6,$perso);
+            $resul = $query->execute();
+            if($resul){
+                return 1;
+            }else{
+                return 0;
+            }
+            conexionBD::cerrar_conexion();
+        }  
+
         public function Cargara_Select_uni(){
             $c = conexionBD::conexionPDO();
             $sql = "CALL SP_CARGAR_SELECT_UNIVERSIDAD()";
