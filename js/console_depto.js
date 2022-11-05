@@ -38,6 +38,20 @@ function AbrirRegistro(){
     $("#modal_registro").modal('show');
 }
 
+
+
+$('#tabla_depto').on('click','.editar',function(){
+	var data = tbl_departamento.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_departamento.row(this).child.isShown()){
+		var data = tbl_departamento.row(this).data();
+	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
+    $("#modal_editar").modal('show');
+    document.getElementById('txt_depto_editar').value=data.nombre_depto;
+    document.getElementById('txt_id').value=data.cod_departamento;
+    document.getElementById('txt_des_editar').value=data.descripcion;
+
+})
+
 function Registrar_Depto(){
     let depto = document.getElementById('txt_depto').value;
     let des = document.getElementById('txt_des').value;
@@ -73,8 +87,9 @@ function Registrar_Depto(){
 function Modificar_Depto(){
     let depto  = document.getElementById('txt_depto_editar').value;
     let des= document.getElementById('txt_des_editar').value;
+    let id= document.getElementById('txt_id').value;
     
-    if(depto.length==0 || des.length==0){
+    if(depto.length==0 || des.length==0 || id.length==0){
         return Swal.fire("Mensaje de Advertencia","Tiene campos vacios","warning");
     }
 
@@ -82,8 +97,10 @@ function Modificar_Depto(){
         "url":"../controller/Departamento/controlador_modificar_depto.php",
         type:'POST',
         data:{
+            id:id,
             depto:depto,
-            des:des
+            des:des,
+           
             
         }
     }).done(function(resp){

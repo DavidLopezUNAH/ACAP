@@ -43,6 +43,15 @@ $('#tabla_estadocivil').on('click','.editar',function(){
 })
 
 
+$('#tabla_estadocivil').on('click','.eliminar',function(){
+	var data = tbl_estadoC.row($(this).parents('tr')).data();//En tamaño escritorio
+	if(tbl_estadoC.row(this).child.isShown()){
+		var data = tbl_estadoC.row(this).data();
+	}//Permite llevar los datos cuando es tamaño celular y usas el responsive de datatable
+    $("#modal_eliminar").modal('show');
+    document.getElementById('txt_idestadocivil').value=data.cod_estado_civil;
+})
+
 function AbrirRegistro(){
     $("#modal_registro").modal({backdrop:'static',keyboard:false})
     $("#modal_registro").modal('show');
