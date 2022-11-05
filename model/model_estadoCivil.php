@@ -47,8 +47,19 @@
             conexionBD::cerrar_conexion();
         }
 
-
-
+        public function Eliminar_EstadoCivil($id){
+            $c = conexionBD::conexionPDO();                                                                                           
+            $sql = "CALL SP_ELIMINAR_ESTADOCIVIL(?)";
+            $arreglo = array();
+            $query  = $c->prepare($sql);
+            $query -> bindParam(1,$id);
+            $query->execute();
+            if($row = $query->fetchColumn()){
+                    return $row;
+            }
+            conexionBD::cerrar_conexion();
+        }
+      
     }
 
 ?>

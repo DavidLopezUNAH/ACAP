@@ -17,8 +17,7 @@ function Listar_estadoCivil(){
             {"defaultContent":""},
             {"data":"cod_estado_civil"},
             {"data":"nombre_estado_civil"},
-            {"defaultContent":"<button class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"},
-            
+            {"defaultContent":"<button class='editar btn btn-primary btn-sm'><i class='fa fa-edit'></i></button>&nbsp;<button class='eliminar btn btn-danger btn-sm'><i class='fa fa-trash'></i></button>"},
         ],
   
         "language":idioma_espanol,
@@ -108,4 +107,24 @@ function Modificar_EstadoCivil(){
             return Swal.fire("Mensaje de Error","No se completo la modificacion","error");            
         }
     })
+    
 }
+
+
+function Eliminar_EstadoCivil(){
+    let id = document.getElementById('txt_idestadocivil').value;  
+
+    $.ajax({
+        "url":"../controller/Estado_civil/controlador_eliminar_estadoCivil.php",
+        type:'POST',
+        data:{
+            id:id,
+        }
+    }).done(function(resp){
+        Swal.fire("Mensaje de Confirmacion","Estado Civil Eliminado","success").then((value)=>{
+            tbl_estadoC.ajax.reload();
+            $("#modal_eliminar").modal('hide');
+        });        
+    })
+}
+
